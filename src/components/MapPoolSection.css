@@ -9,71 +9,119 @@
   gap: 16px;
 }
 
+/* 1. Вкладки выбора карт с реальными превью из Standoff 2 */
 .mappool-tabs {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
-  gap: 8px;
-  padding: 6px;
-  border-radius: var(--radius-lg);
-  background-color: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.06);
+  gap: 10px;
 }
 
 .mappool-tab-btn {
-  padding: 12px 16px;
-  border-radius: var(--radius-md);
+  position: relative;
+  height: 92px;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.1);
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  gap: 3px;
+  justify-content: flex-end;
+  padding: 12px 14px;
+  text-align: left;
   transition:
-    background-color 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 0.25s ease,
+    transform 0.25s cubic-bezier(0.16, 1, 0.3, 1),
     box-shadow 0.25s ease;
 }
 
 .mappool-tab-btn:hover {
-  background-color: rgba(255, 255, 255, 0.07);
+  transform: translateY(-2px);
+  border-color: rgba(255, 255, 255, 0.28);
 }
 
 .mappool-tab-btn.is-active {
-  background-color: var(--brand-red);
-  box-shadow: 0 8px 20px -4px rgba(225, 6, 22, 0.5);
+  border-color: var(--brand-red);
+  box-shadow: 0 10px 26px -6px rgba(225, 6, 22, 0.55);
+}
+
+.map-tab-thumb-wrap {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
+.map-tab-thumb {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: grayscale(35%) brightness(0.65);
+  transition: transform 0.4s ease, filter 0.3s ease;
+}
+
+.mappool-tab-btn:hover .map-tab-thumb,
+.mappool-tab-btn.is-active .map-tab-thumb {
+  transform: scale(1.06);
+  filter: grayscale(0%) brightness(0.85);
+}
+
+.map-tab-thumb-fade {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(8, 8, 10, 0.95) 0%,
+    rgba(8, 8, 10, 0.35) 60%,
+    rgba(8, 8, 10, 0.15) 100%
+  );
+}
+
+.mappool-tab-btn.is-active .map-tab-thumb-fade {
+  background: linear-gradient(
+    to top,
+    rgba(225, 6, 22, 0.78) 0%,
+    rgba(8, 8, 10, 0.35) 75%
+  );
+}
+
+.map-tab-meta {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
 }
 
 .map-tab-code {
   font-family: var(--font-mono);
-  font-size: 0.6rem;
-  color: var(--brand-red);
+  font-size: 0.58rem;
+  color: rgba(255, 255, 255, 0.75);
   font-weight: 700;
   letter-spacing: 0.1em;
 }
 
-.mappool-tab-btn.is-active .map-tab-code {
-  color: rgba(255, 255, 255, 0.85);
-}
-
 .map-tab-name {
   font-family: var(--font-display);
-  font-size: 1.05rem;
+  font-size: 1.15rem;
   font-weight: 800;
   color: var(--text-primary);
+  letter-spacing: 0.02em;
 }
 
+/* 2. Шапка выбранной карты + переключатель стороны CT / T */
 .mappool-overview-bar {
   display: grid;
-  grid-template-columns: 1.3fr 0.7fr;
+  grid-template-columns: 1.15fr 0.85fr;
   gap: 16px;
-  padding: 24px 26px;
+  padding: 22px 24px;
   border-radius: var(--radius-lg);
   background-color: rgba(255, 255, 255, 0.03);
   border: 1px solid rgba(255, 255, 255, 0.06);
   align-items: center;
 }
 
-.map-Identity-col {
+.map-identity-col {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 6px;
 }
 
 .map-tempo-tag {
@@ -86,57 +134,318 @@
 
 .map-current-title {
   font-family: var(--font-display);
-  font-size: clamp(1.8rem, 3vw, 2.5rem);
+  font-size: clamp(1.75rem, 3vw, 2.35rem);
   font-weight: 800;
   line-height: 1;
 }
 
 .map-current-desc {
-  font-size: 0.9rem;
+  font-size: 0.88rem;
   color: var(--text-secondary);
   line-height: 1.55;
-  max-width: 640px;
+  max-width: 620px;
+}
+
+.map-controls-col {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.side-switcher-pill {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px;
+  padding: 5px;
+  border-radius: var(--radius-pill);
+  background-color: rgba(0, 0, 0, 0.45);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.side-switch-btn {
+  padding: 10px 14px;
+  border-radius: var(--radius-pill);
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--text-secondary);
+  transition:
+    background-color 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+    color 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.side-switch-btn:hover {
+  color: var(--text-primary);
+}
+
+.side-switch-btn.is-active {
+  background-color: var(--brand-red);
+  color: var(--text-primary);
+  box-shadow: 0 4px 14px rgba(225, 6, 22, 0.5);
 }
 
 .map-signature-box {
-  padding: 18px 20px;
+  padding: 14px 18px;
   border-radius: var(--radius-md);
-  background-color: rgba(225, 6, 22, 0.09);
-  border: 1px solid rgba(225, 6, 22, 0.28);
+  background-color: rgba(225, 6, 22, 0.08);
+  border: 1px solid rgba(225, 6, 22, 0.25);
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 4px;
 }
 
 .sig-k {
   font-family: var(--font-mono);
-  font-size: 0.62rem;
+  font-size: 0.58rem;
   color: var(--text-secondary);
   letter-spacing: 0.12em;
 }
 
 .sig-v {
   font-family: var(--font-mono);
-  font-size: 0.8rem;
+  font-size: 0.76rem;
   color: var(--text-primary);
-  line-height: 1.45;
+  line-height: 1.4;
 }
 
-.mappool-assignments-grid {
+/* 3. ГЛАВНЫЙ ИНТЕРАКТИВНЫЙ РАДАР С МАРКЕРАМИ ИГРОКОВ НА КАРТЕ */
+.mappool-interactive-stage {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 14px;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 16px;
+  align-items: stretch;
+}
+
+.radar-map-canvas {
+  border-radius: var(--radius-lg);
+  background-color: #070709;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 12px;
+  background-image: radial-gradient(
+    circle at center,
+    rgba(225, 6, 22, 0.08) 0%,
+    transparent 70%
+  );
+}
+
+.radar-map-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 8px 14px;
+  border-radius: var(--radius-pill);
+  background-color: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.radar-live-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  letter-spacing: 0.08em;
+}
+
+.radar-hint-text {
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  color: var(--text-secondary);
+}
+
+.radar-image-wrapper {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  max-width: 580px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+}
+
+.radar-minimap-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 12px 28px rgba(0, 0, 0, 0.85));
+}
+
+/* Маркеры (пины) игроков прямо на карте */
+.radar-player-pin {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  z-index: 5;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 10px 4px 5px;
+  border-radius: var(--radius-pill);
+  background-color: rgba(14, 14, 18, 0.92);
+  backdrop-filter: blur(10px);
+  border: 1.5px solid var(--brand-red);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.75);
+  transition:
+    left 0.55s cubic-bezier(0.16, 1, 0.3, 1),
+    top 0.55s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+    background-color 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.radar-player-pin:hover,
+.radar-player-pin.is-selected {
+  z-index: 12;
+  transform: translate(-50%, -50%) scale(1.14);
+  background-color: var(--brand-red);
+  border-color: #ffffff;
+  box-shadow: 0 0 22px rgba(225, 6, 22, 0.85);
+}
+
+.radar-player-pin.is-sub-pin {
+  border-style: dashed;
+  border-color: rgba(255, 255, 255, 0.65);
+}
+
+.radar-player-pin.is-sub-pin.is-selected {
+  border-style: solid;
+  border-color: #ffffff;
+}
+
+.pin-pulse {
+  position: absolute;
+  inset: -4px;
+  border-radius: var(--radius-pill);
+  border: 1px solid rgba(225, 6, 22, 0.55);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.radar-player-pin.is-selected .pin-pulse {
+  opacity: 1;
+  animation: pulseRedSignal 1.8s infinite ease-in-out;
+}
+
+.pin-dot {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  font-weight: 800;
+  padding: 2px 6px;
+  border-radius: var(--radius-pill);
+  background-color: var(--brand-red);
+  color: #ffffff;
+}
+
+.radar-player-pin.is-selected .pin-dot {
+  background-color: #080808;
+  color: #ffffff;
+}
+
+.pin-label {
+  font-family: var(--font-display);
+  font-size: 0.74rem;
+  font-weight: 800;
+  color: #ffffff;
+  white-space: nowrap;
+}
+
+/* Нижний HUD выбранного игрока под картой */
+.radar-focused-hud {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 14px 18px;
+  border-radius: var(--radius-md);
+  background-color: rgba(225, 6, 22, 0.1);
+  border: 1px solid rgba(225, 6, 22, 0.35);
+}
+
+.hud-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.hud-num {
+  width: 38px;
+  height: 38px;
+  border-radius: var(--radius-sm);
+  background-color: var(--brand-red);
+  color: #ffffff;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hud-player-line {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.hud-player-line strong {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  color: var(--text-primary);
+}
+
+.hud-role-pill {
+  font-family: var(--font-mono);
+  font-size: 0.58rem;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: var(--radius-pill);
+  background-color: rgba(0, 0, 0, 0.45);
+  color: var(--text-secondary);
+}
+
+.hud-pos-val {
+  font-size: 0.82rem;
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+.hud-coords {
+  font-family: var(--font-mono);
+  font-size: 0.64rem;
+  color: var(--text-secondary);
+}
+
+/* Правая часть: сетка карточек игроков */
+.mappool-assignments-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
 }
 
 .map-assign-card {
-  padding: 18px;
+  padding: 14px;
   border-radius: var(--radius-lg);
   background-color: rgba(255, 255, 255, 0.03);
   border: 1px solid rgba(255, 255, 255, 0.07);
   display: flex;
   flex-direction: column;
-  gap: 14px;
-  transition: border-color 0.2s ease, transform 0.2s ease;
+  justify-content: space-between;
+  gap: 10px;
+  cursor: pointer;
+  transition:
+    border-color 0.2s ease,
+    background-color 0.2s ease,
+    transform 0.2s ease;
 }
 
 .map-assign-card:hover {
@@ -144,29 +453,43 @@
   transform: translateY(-2px);
 }
 
-.map-assign-card.is-sub-assign {
-  background-color: rgba(225, 6, 22, 0.05);
-  border-color: rgba(225, 6, 22, 0.22);
+.map-assign-card.is-focused-card {
+  border-color: var(--brand-red);
+  background-color: rgba(225, 6, 22, 0.08);
 }
 
 .assign-card-head {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 6px;
+}
+
+.assign-player-title {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.assign-num {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 700;
+  color: var(--brand-red);
 }
 
 .assign-player-name {
   font-family: var(--font-display);
-  font-size: 1.25rem;
+  font-size: 1.12rem;
   font-weight: 800;
   color: var(--text-primary);
 }
 
 .assign-role-badge {
   font-family: var(--font-mono);
-  font-size: 0.62rem;
+  font-size: 0.58rem;
   font-weight: 700;
-  padding: 3px 10px;
+  padding: 2px 8px;
   border-radius: var(--radius-pill);
   background-color: rgba(225, 6, 22, 0.14);
   color: var(--brand-red);
@@ -180,22 +503,28 @@
 .assign-sides-stack {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 6px;
 }
 
 .assign-side-row {
   display: flex;
   flex-direction: column;
-  gap: 4px;
-  padding: 10px 12px;
+  gap: 2px;
+  padding: 8px 10px;
   border-radius: var(--radius-sm);
-  background-color: rgba(0, 0, 0, 0.3);
+  background-color: rgba(0, 0, 0, 0.32);
   border: 1px solid rgba(255, 255, 255, 0.05);
+  transition: border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.assign-side-row.active-side-highlight {
+  border-color: rgba(225, 6, 22, 0.45);
+  background-color: rgba(225, 6, 22, 0.09);
 }
 
 .side-pill {
   font-family: var(--font-mono);
-  font-size: 0.58rem;
+  font-size: 0.54rem;
   font-weight: 700;
   letter-spacing: 0.1em;
 }
@@ -209,22 +538,25 @@
 }
 
 .side-pos-text {
-  font-size: 0.84rem;
+  font-size: 0.78rem;
   font-weight: 600;
   color: var(--text-primary);
+  line-height: 1.3;
 }
 
-@media (max-width: 1024px) {
-  .mappool-tabs {
-    grid-template-columns: repeat(3, 1fr);
+@media (max-width: 1100px) {
+  .mappool-interactive-stage {
+    grid-template-columns: 1fr;
   }
 
   .mappool-overview-bar {
     grid-template-columns: 1fr;
   }
+}
 
-  .mappool-assignments-grid {
-    grid-template-columns: repeat(2, 1fr);
+@media (max-width: 900px) {
+  .mappool-tabs {
+    grid-template-columns: repeat(3, 1fr);
   }
 }
 
@@ -233,7 +565,16 @@
     grid-template-columns: repeat(2, 1fr);
   }
 
-  .mappool-assignments-grid {
+  .mappool-assignments-list {
     grid-template-columns: 1fr;
+  }
+
+  .radar-focused-hud {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .pin-label {
+    font-size: 0.65rem;
   }
 }
