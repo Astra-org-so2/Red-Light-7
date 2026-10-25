@@ -415,8 +415,19 @@
     grid-template-columns: 1fr;
   }
 
+  .spotlight-left-stack {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    align-items: stretch;
+  }
+
+  .spotlight-portrait-box {
+    min-height: 300px;
+  }
+
   .spotlight-details {
-    padding: 24px 20px;
+    padding: 22px 18px;
   }
 
   .roster-subbar {
@@ -427,14 +438,66 @@
 }
 
 @media (max-width: 640px) {
+  .rl7-roster-page {
+    padding-top: 16px;
+  }
+
+  .rl7-spotlight-dossier {
+    padding: 10px;
+    margin-bottom: 44px;
+  }
+
   .spotlight-tabs {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
+    gap: 6px;
+    padding: 5px;
+  }
+
+  .spotlight-tab-btn {
+    padding: 10px;
+  }
+
+  .tab-nick {
+    font-size: 0.86rem;
+  }
+
+  .spotlight-left-stack {
+    grid-template-columns: 1fr;
+  }
+
+  .spotlight-portrait-box {
+    min-height: 270px;
+  }
+
+  .spotlight-big-num {
+    font-size: 5.2rem;
+  }
+
+  .spotlight-details {
+    padding: 18px 14px;
   }
 
   .spotlight-specs-grid,
+  .pro-settings-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+
   .spotlight-metrics-box,
-  .pro-settings-grid,
   .rl7-roster-grid-6 {
+    grid-template-columns: 1fr;
+  }
+
+  .copy-config-btn {
+    width: 100%;
+    text-align: center;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 400px) {
+  .spotlight-specs-grid,
+  .pro-settings-grid {
     grid-template-columns: 1fr;
   }
 }

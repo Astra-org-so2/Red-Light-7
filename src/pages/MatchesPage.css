@@ -446,12 +446,52 @@
 }
 
 @media (max-width: 640px) {
+  .rl7-matches-page {
+    padding-top: 16px;
+  }
+
+  .rl7-tba-monitor,
+  .rl7-scrim-section {
+    margin-bottom: 56px;
+  }
+
+  .tba-monitor-topbar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+    border-radius: var(--radius-md);
+  }
+
   .tba-monitor-content {
     flex-direction: column;
-    padding: 24px 18px;
+    padding: 20px 16px;
+    gap: 16px;
+  }
+
+  .scrim-builder-grid {
+    padding: 12px;
+    gap: 14px;
+  }
+
+  .scrim-form-col,
+  .scrim-preview-col {
+    padding: 18px 14px;
   }
 
   .scrim-input-row {
     grid-template-columns: 1fr;
+  }
+
+  /* 16px предотвращает принудительный авто-зум в iOS Safari при фокусе на поле ввода */
+  .scrim-field input {
+    font-size: 16px;
+  }
+
+  .scrim-submit-btn {
+    min-width: 100%;
+  }
+
+  .scrim-copy-secondary {
+    width: 100%;
   }
 }

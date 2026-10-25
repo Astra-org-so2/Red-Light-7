@@ -75,7 +75,7 @@ export const RadarChart: React.FC<RadarChartProps> = ({ stats, lang }) => {
         width={size}
         height={size}
         viewBox={`0 0 ${size} ${size}`}
-        style={{ overflow: 'visible' }}
+        style={{ width: '100%', maxWidth: 230, height: 'auto', overflow: 'visible' }}
         aria-label="Player Skill Radar Chart"
       >
         {/* Концентрические пятиугольники сетки */}

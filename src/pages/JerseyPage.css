@@ -262,3 +262,33 @@
     grid-template-columns: 1fr;
   }
 }
+
+@media (max-width: 640px) {
+  .rl7-jersey-page {
+    padding-top: 16px;
+  }
+
+  .rl7-jersey-showcase-grid {
+    padding: 12px;
+    margin-bottom: 56px;
+  }
+
+  .jersey-image-container {
+    padding: 20px;
+    min-height: 300px;
+  }
+
+  .jersey-specs-panel {
+    padding: 18px 14px;
+  }
+
+  .jersey-stage-header,
+  .jersey-stage-footer {
+    padding: 12px 14px;
+    font-size: 0.6rem;
+  }
+
+  .id-logo-stage {
+    padding: 28px;
+  }
+}

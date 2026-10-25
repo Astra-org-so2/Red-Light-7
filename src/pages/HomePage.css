@@ -450,6 +450,17 @@
   background-color: rgba(225, 6, 22, 0.12);
 }
 
+@media (min-width: 1360px) {
+  .rl7-hero-grid {
+    grid-template-columns: 1.02fr 1.28fr;
+    gap: 24px;
+  }
+
+  .rl7-hero-poster-wrap {
+    min-height: 490px;
+  }
+}
+
 @media (max-width: 1200px) {
   .rl7-roster-grid-5 {
     grid-template-columns: repeat(3, 1fr);
@@ -469,30 +480,91 @@
     padding: 32px 24px;
   }
 
+  .rl7-hero-poster-wrap {
+    min-height: 380px;
+  }
+
+  .rl7-hero-lineup-tags {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
   .rl7-roster-grid-5 {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
 @media (max-width: 640px) {
-  .rl7-roster-grid-5 {
-    grid-template-columns: 1fr;
+  .rl7-hero {
+    padding-top: 8px;
+  }
+
+  .rl7-hero-copy {
+    padding: 24px 18px;
+    gap: 18px;
+  }
+
+  .rl7-hero-slogan {
+    font-size: 0.72rem;
+    padding: 8px 12px;
+  }
+
+  .rl7-hero-poster-wrap {
+    min-height: 310px;
   }
 
   .rl7-hero-lineup-tags {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
+    margin: 10px;
+    padding: 6px;
+    gap: 5px;
+  }
+
+  .hero-player-chip {
+    padding: 8px 8px;
+  }
+
+  .chip-name {
+    font-size: 0.8rem;
+  }
+
+  .rl7-ticker-inner {
+    padding: 12px 16px;
+    border-radius: var(--radius-lg);
+    justify-content: center;
+    text-align: center;
+    gap: 10px;
+    font-size: 0.62rem;
+  }
+
+  .rl7-home-section {
+    padding-top: 56px;
+  }
+
+  .rl7-roster-grid-5 {
+    grid-template-columns: 1fr;
+    gap: 14px;
   }
 
   .bento-jersey-layout {
     grid-template-columns: 1fr;
-    padding: 16px;
+    padding: 14px;
+    gap: 18px;
   }
 
   .bento-matches-body {
-    padding: 16px;
+    padding: 14px;
+  }
+
+  .tba-row {
+    padding: 12px 14px;
+    font-size: 0.68rem;
+    flex-wrap: wrap;
+    gap: 6px;
   }
 
   .rl7-hero-stats-strip {
     grid-template-columns: 1fr;
+    gap: 12px;
+    padding: 14px 16px;
   }
 }
