@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 380 100" fill="none">
+  <rect x="6" y="6" width="88" height="88" rx="22" fill="#141416" stroke="#292929" stroke-width="2"/>
+  <polygon points="18,24 82,24 50,78" fill="#080808" stroke="#F5F5F7" stroke-width="3.5" stroke-linejoin="round"/>
+  <path d="M28 31H48V37H37L43 45H34L28 37V31Z" fill="#F5F5F7"/>
+  <path d="M46 31H53V53H61V59H46V31Z" fill="#F5F5F7"/>
+  <path d="M56 31H76L52 69L47 61L64 37H56V31Z" fill="#E10616"/>
+  <text x="112" y="53" fill="#F5F5F7" font-family="-apple-system, BlinkMacSystemFont, 'Inter', sans-serif" font-weight="800" font-size="34" letter-spacing="1">RED LIGHT</text>
+  <text x="314" y="53" fill="#E10616" font-family="-apple-system, BlinkMacSystemFont, 'Inter', sans-serif" font-weight="800" font-size="34" letter-spacing="1">7</text>
+  <text x="112" y="78" fill="#A1A1A6" font-family="-apple-system, BlinkMacSystemFont, 'Inter', sans-serif" font-weight="600" font-size="12" letter-spacing="3">STANDOFF 2 ESPORTS // RL7</text>
+</svg>

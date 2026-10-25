@@ -1,0 +1,279 @@
+:root {
+  /* СТРОГАЯ ТРЁХЦВЕТНАЯ ПАЛИТРА RL7 В ЭСТЕТИКЕ iOS DARK MODE */
+  --bg-primary: #080808;
+  --bg-surface: rgba(20, 20, 22, 0.78);
+  --bg-surface-solid: #141416;
+  --bg-secondary: rgba(30, 30, 34, 0.85);
+  --bg-elevated: rgba(38, 38, 42, 0.65);
+  --text-primary: #f5f5f7;
+  --text-secondary: #a1a1a6;
+  --text-muted: #6e6e73;
+  --brand-red: #e10616;
+  --brand-red-deep: #8f0010;
+  --border-grid: rgba(255, 255, 255, 0.09);
+  --border-subtle: rgba(255, 255, 255, 0.05);
+  --glass-highlight: inset 0 1px 0 0 rgba(255, 255, 255, 0.1);
+  --ios-shadow: 0 20px 45px -15px rgba(0, 0, 0, 0.65);
+
+  /* Радиусы скругления в стиле iOS (Squircle feel) */
+  --radius-xl: 28px;
+  --radius-lg: 22px;
+  --radius-md: 18px;
+  --radius-sm: 14px;
+  --radius-pill: 999px;
+
+  /* Типографика */
+  --font-display: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Space Grotesk', 'Inter', sans-serif;
+  --font-sans: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Inter', 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'JetBrains Mono', 'SF Mono', monospace;
+
+  /* Размеры сетки */
+  --container-max: 1380px;
+  --header-height: 84px;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  min-height: 100vh;
+  overflow-x: hidden;
+  line-height: 1.5;
+  /* Мягкое атмосферное свечение в стиле iOS вместо жесткой сетки */
+  background-image:
+    radial-gradient(circle at 15% 10%, rgba(225, 6, 22, 0.09) 0%, transparent 40%),
+    radial-gradient(circle at 85% 80%, rgba(255, 255, 255, 0.03) 0%, transparent 45%);
+  background-attachment: fixed;
+}
+
+img,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+/* Фокус-состояния для клавиатурной доступности */
+:focus-visible {
+  outline: 2px solid var(--brand-red);
+  outline-offset: 3px;
+  border-radius: var(--radius-sm);
+}
+
+/* Утилитарный контейнер */
+.swiss-container {
+  width: 100%;
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* Капсульная метка в стиле iOS */
+.tech-label {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px;
+  border-radius: var(--radius-pill);
+  background-color: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border-grid);
+  backdrop-filter: blur(12px);
+}
+
+.tech-label::before {
+  content: '';
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background-color: var(--brand-red);
+  box-shadow: 0 0 8px rgba(225, 6, 22, 0.7);
+}
+
+/* Заголовки секций */
+.section-header-grid {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: end;
+  gap: 24px;
+  padding-bottom: 28px;
+  margin-bottom: 36px;
+}
+
+.section-title-en {
+  font-family: var(--font-display);
+  font-size: clamp(2.25rem, 4.8vw, 4rem);
+  font-weight: 800;
+  line-height: 1.02;
+  letter-spacing: -0.03em;
+  text-transform: uppercase;
+  color: var(--text-primary);
+  margin-top: 12px;
+}
+
+.section-title-en span {
+  color: var(--brand-red);
+}
+
+.section-subtitle-ru {
+  font-size: 0.98rem;
+  color: var(--text-secondary);
+  margin-top: 10px;
+  max-width: 600px;
+  line-height: 1.6;
+}
+
+/* Кнопки RL7 в стиле iOS Pill */
+.btn-rl7 {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 14px 28px;
+  border-radius: var(--radius-pill);
+  font-family: var(--font-sans);
+  font-size: 0.86rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  transition:
+    background-color 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+    color 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+}
+
+.btn-rl7-primary {
+  background-color: var(--brand-red);
+  color: var(--text-primary);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  box-shadow: 0 8px 24px -6px rgba(225, 6, 22, 0.55);
+}
+
+.btn-rl7-primary:hover {
+  background-color: #f5091b;
+  transform: scale(1.02) translateY(-1px);
+  box-shadow: 0 12px 28px -6px rgba(225, 6, 22, 0.75);
+}
+
+.btn-rl7-outline {
+  background-color: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(16px);
+  color: var(--text-primary);
+  border: 1px solid var(--border-grid);
+  box-shadow: var(--glass-highlight);
+}
+
+.btn-rl7-outline:hover {
+  border-color: rgba(225, 6, 22, 0.55);
+  background-color: rgba(255, 255, 255, 0.1);
+  transform: scale(1.02) translateY(-1px);
+}
+
+/* iOS Glass Card Surface (заменяет острые углы corner-frame) */
+.corner-frame {
+  position: relative;
+  border-radius: var(--radius-xl);
+  background-color: var(--bg-surface);
+  backdrop-filter: blur(24px) saturate(160%);
+  -webkit-backdrop-filter: blur(24px) saturate(160%);
+  border: 1px solid var(--border-grid);
+  box-shadow: var(--glass-highlight), var(--ios-shadow);
+  overflow: hidden;
+}
+
+/* Анимация пульсации сигнала Red Light (круглая точка) */
+@keyframes pulseRedSignal {
+  0%,
+  100% {
+    opacity: 1;
+    box-shadow: 0 0 0 0 rgba(225, 6, 22, 0.7);
+  }
+  50% {
+    opacity: 0.55;
+    box-shadow: 0 0 0 7px rgba(225, 6, 22, 0);
+  }
+}
+
+.red-signal-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: var(--brand-red);
+  display: inline-block;
+  animation: pulseRedSignal 2.2s infinite ease-in-out;
+}
+
+/* Плавное появление в стиле iOS Spring */
+@keyframes pageFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px) scale(0.99);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.page-transition {
+  animation: pageFadeIn 0.42s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .swiss-container {
+    padding: 0 16px;
+  }
+
+  .section-header-grid {
+    grid-template-columns: 1fr;
+    align-items: start;
+    gap: 14px;
+  }
+}
