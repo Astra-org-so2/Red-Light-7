@@ -275,9 +275,20 @@
   box-shadow: 0 6px 16px -4px rgba(225, 6, 22, 0.55);
 }
 
-.scrim-submit-btn {
-  width: 100%;
+.scrim-actions-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
   margin-top: 6px;
+}
+
+.scrim-submit-btn {
+  flex: 1;
+  min-width: 240px;
+}
+
+.scrim-copy-secondary {
+  padding: 14px 20px;
 }
 
 .scrim-preview-col {

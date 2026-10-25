@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Language, TEAM_CONFIG } from '../data/teamData';
-import { CrosshairIcon } from '../components/SocialIcons';
+import { ArrowUpRightIcon, CrosshairIcon, SocialVectorIcon } from '../components/SocialIcons';
 import './MatchesPage.css';
 
 interface MatchesPageProps {
@@ -30,16 +30,28 @@ export const MatchesPage: React.FC<MatchesPageProps> = ({ lang }) => {
   };
 
   const formattedTicket = [
-    `[RL7 SCRIM REQUEST // STANDOFF 2]`,
-    `OPPONENT: ${teamName.trim() || 'TEAM TBA'}`,
-    `FORMAT: ${format} (5v5 Competitive)`,
-    `MAPS: ${selectedMaps.join(' / ')}`,
-    `TIME: ${timeSlot}`,
-    `CONTACT: ${contactHandle.trim() || '@captain_tba'}`,
+    `🔴 ВЫЗОВ НА ПРАК (SCRIM) — RED LIGHT 7 (SO2)`,
+    `• Соперник: ${teamName.trim() || 'TEAM TBA'}`,
+    `• Формат: ${format} (5v5 Competitive)`,
+    `• Карты: ${selectedMaps.join(' / ')}`,
+    `• Время: ${timeSlot}`,
+    `• Контакт капитана: ${contactHandle.trim() || 'в этом чате'}`,
   ].join('\n');
 
-  const handleCopyScrim = (e: React.FormEvent) => {
+  // Прямая ссылка в личку Telegram @ecstazy322 с предзаполненным текстом заявки
+  const telegramDirectHref = `https://t.me/${TEAM_CONFIG.brand.scrimTelegramUsername}?text=${encodeURIComponent(
+    formattedTicket
+  )}`;
+
+  const handleSendTelegram = (e: React.FormEvent) => {
     e.preventDefault();
+    if (navigator.clipboard) {
+      navigator.clipboard.writeText(formattedTicket);
+    }
+    window.open(telegramDirectHref, '_blank', 'noopener,noreferrer');
+  };
+
+  const handleCopyOnly = () => {
     if (navigator.clipboard) {
       navigator.clipboard.writeText(formattedTicket);
     }
@@ -80,14 +92,14 @@ export const MatchesPage: React.FC<MatchesPageProps> = ({ lang }) => {
             </h1>
             <p className="section-subtitle-ru">
               {lang === 'ru'
-                ? 'Официальный календарь выступлений, интерактивная форма вызова RED LIGHT 7 на прак (Scrim) и турнирный архив.'
-                : 'Official competitive calendar, interactive RED LIGHT 7 scrimmage challenge form, and tournament archive.'}
+                ? 'Официальный календарь выступлений, прямая отправка вызова RED LIGHT 7 на прак (Scrim) в Telegram и турнирный архив.'
+                : 'Official competitive calendar, direct Telegram scrimmage challenge to RED LIGHT 7, and tournament archive.'}
             </p>
           </div>
 
           <div className="matches-live-indicator">
             <span className="red-signal-dot" />
-            <span>SCHEDULE STATUS: UPCOMING // TBA</span>
+            <span>SCRIM CONTACT: @{TEAM_CONFIG.brand.scrimTelegramUsername.toUpperCase()}</span>
           </div>
         </div>
 
@@ -112,8 +124,8 @@ export const MatchesPage: React.FC<MatchesPageProps> = ({ lang }) => {
               </h2>
               <p className="tba-subtext">
                 {lang === 'ru'
-                  ? 'Состав RL7 (L1tez, sharinganov, morph, hako, karat + delf1n) проходит тренировочный цикл и подготовку к турнирным выступлениям. Даты матчей, соперники и трансляции будут опубликованы после официальной жеребьёвки.'
-                  : 'The RL7 squad (L1tez, sharinganov, morph, hako, karat + delf1n) is in an active scrimmage block. Match dates, opponents, and stream links will appear here once brackets are locked.'}
+                  ? 'Состав RL7 (L1tez, sharinganov, morph, hako, karat + delf1n) проходит тренировочный цикл и открыт для праков. Даты турнирных матчей будут опубликованы после официальной жеребьёвки.'
+                  : 'The RL7 squad (L1tez, sharinganov, morph, hako, karat + delf1n) is in an active scrimmage block. Official tournament dates will appear here once brackets are locked.'}
               </p>
             </div>
           </div>
@@ -148,24 +160,24 @@ export const MatchesPage: React.FC<MatchesPageProps> = ({ lang }) => {
           </div>
         </div>
 
-        {/* Пункт 7: БЫСТРАЯ ФОРМА «ЗАБИТЬ ПРАК (SCRIM) С RL7» */}
+        {/* Пункт 7: БЫСТРАЯ ФОРМА «ЗАБИТЬ ПРАК (SCRIM) С RL7» НАПРЯМУЮ В TELEGRAM @ecstazy322 */}
         <div className="rl7-scrim-section">
           <div className="section-header-grid">
             <div>
-              <span className="tech-label">PRACTICE CHALLENGE // SCRIM GENERATOR</span>
+              <span className="tech-label">DIRECT TELEGRAM DISPATCH // @{TEAM_CONFIG.brand.scrimTelegramUsername}</span>
               <h2 className="section-title-en">
                 BOOK A <span>SCRIM VS RL7</span>
               </h2>
               <p className="section-subtitle-ru">
                 {lang === 'ru'
-                  ? 'Сформируйте карточку вызова на тренировочный матч (прак) против основного состава RED LIGHT 7 по Standoff 2 и скопируйте её в 1 клик.'
-                  : 'Configure a practice scrimmage request against the RED LIGHT 7 Standoff 2 lineup and copy the formatted ticket in one click.'}
+                  ? 'Заполните параметры прака и нажмите «Отправить в Telegram» — откроется диалог с @ecstazy322 с уже готовым текстом вызова.'
+                  : 'Configure your scrim parameters and click "Send via Telegram" — opens direct chat with @ecstazy322 with the pre-filled match ticket.'}
               </p>
             </div>
           </div>
 
           <div className="scrim-builder-grid corner-frame">
-            <form className="scrim-form-col" onSubmit={handleCopyScrim}>
+            <form className="scrim-form-col" onSubmit={handleSendTelegram}>
               <div className="scrim-input-row">
                 <div className="scrim-field">
                   <label htmlFor="scrim-team">
@@ -251,22 +263,38 @@ export const MatchesPage: React.FC<MatchesPageProps> = ({ lang }) => {
                 </div>
               </div>
 
-              <button type="submit" className="btn-rl7 btn-rl7-primary scrim-submit-btn">
-                {scrimCopied
-                  ? lang === 'ru'
-                    ? '✓ ЗАЯВКА НА ПРАК СКОПИРОВАНА В БУФЕР ОБМЕНА'
-                    : '✓ SCRIM TICKET COPIED TO CLIPBOARD'
-                  : lang === 'ru'
-                    ? 'СКОПИРОВАТЬ ГОТОВУЮ ЗАЯВКУ НА ПРАК'
-                    : 'COPY FORMATTED SCRIM REQUEST'}
-              </button>
+              <div className="scrim-actions-row">
+                <button type="submit" className="btn-rl7 btn-rl7-primary scrim-submit-btn">
+                  <SocialVectorIcon id="telegram" size={18} />
+                  <span>
+                    {lang === 'ru'
+                      ? 'ОТПРАВИТЬ ВЫЗОВ В TELEGRAM (@ECSTAZY322)'
+                      : 'SEND SCRIM TO TELEGRAM (@ECSTAZY322)'}
+                  </span>
+                  <ArrowUpRightIcon size={15} />
+                </button>
+
+                <button
+                  type="button"
+                  className="btn-rl7 btn-rl7-outline scrim-copy-secondary"
+                  onClick={handleCopyOnly}
+                >
+                  {scrimCopied
+                    ? lang === 'ru'
+                      ? '✓ СКОПИРОВАНО'
+                      : '✓ COPIED'
+                    : lang === 'ru'
+                      ? 'СКОПИРОВАТЬ ТЕКСТ'
+                      : 'COPY TEXT'}
+                </button>
+              </div>
             </form>
 
             {/* Предпросмотр карточки прака в реальном времени */}
             <div className="scrim-preview-col">
               <div className="scrim-preview-header">
-                <span>LIVE TICKET PREVIEW</span>
-                <span style={{ color: 'var(--brand-red)' }}>READY TO SEND</span>
+                <span>RECIPIENT: @{TEAM_CONFIG.brand.scrimTelegramUsername.toUpperCase()}</span>
+                <span style={{ color: 'var(--brand-red)' }}>DIRECT TELEGRAM</span>
               </div>
 
               <div className="scrim-versus-banner">
@@ -276,7 +304,11 @@ export const MatchesPage: React.FC<MatchesPageProps> = ({ lang }) => {
                 </div>
                 <span className="vs-badge">{format}</span>
                 <div className="vs-side">
-                  <strong>{teamName.trim() ? teamName.trim().slice(0, 12).toUpperCase() : 'OPPONENT'}</strong>
+                  <strong>
+                    {teamName.trim()
+                      ? teamName.trim().slice(0, 12).toUpperCase()
+                      : 'OPPONENT'}
+                  </strong>
                   <span>CHALLENGER</span>
                 </div>
               </div>
@@ -285,8 +317,8 @@ export const MatchesPage: React.FC<MatchesPageProps> = ({ lang }) => {
 
               <p className="scrim-preview-hint">
                 {lang === 'ru'
-                  ? 'После копирования отправьте этот блок в официальный Telegram или VK команды RL7.'
-                  : 'After copying, paste this ticket directly into RL7 official Telegram or VK.'}
+                  ? 'При нажатии «Отправить вызов в Telegram» этот текст автоматически подставится в личное сообщение @ecstazy322 (и одновременно скопируется в буфер обмена).'
+                  : 'Clicking "Send Scrim to Telegram" opens a direct message to @ecstazy322 with this ticket pre-filled (and copied to clipboard).'}
               </p>
             </div>
           </div>

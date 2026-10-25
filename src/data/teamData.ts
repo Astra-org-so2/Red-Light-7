@@ -93,6 +93,8 @@ export const TEAM_CONFIG = {
     discipline: 'STANDOFF 2',
     foundedYear: '2026',
     kitEdition: 'RL7 WHITE PRO KIT // VARIANT B',
+    scrimTelegramUsername: 'ecstazy322',
+    scrimTelegramUrl: 'https://t.me/ecstazy322',
     sloganRu: 'ТОЧНОСТЬ. ХЛАДНОКРОВИЕ. КРАСНЫЙ СИГНАЛ.',
     sloganEn: 'PRECISION. COMPOSURE. THE RED SIGNAL.',
     subSloganRu:
@@ -697,10 +699,10 @@ export const TEAM_CONFIG = {
     {
       id: 'telegram',
       name: 'TELEGRAM',
-      handle: '@RL7_ESPORTS // TBA',
-      url: '',
-      statusRu: 'СКОРО ПОДКЛЮЧЕНИЕ',
-      statusEn: 'CHANNEL COMING SOON',
+      handle: '@ecstazy322 // OFFICIAL CONTACT',
+      url: 'https://t.me/ecstazy322',
+      statusRu: 'ОФИЦИАЛЬНЫЙ КОНТАКТ / ПРАКИ',
+      statusEn: 'OFFICIAL CONTACT / SCRIMS',
     },
     {
       id: 'vk',
