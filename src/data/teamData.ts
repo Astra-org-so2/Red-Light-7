@@ -1,15 +1,27 @@
 export type Language = 'ru' | 'en';
 
+export interface PlayerMetric {
+  labelRu: string;
+  labelEn: string;
+  value: number;
+}
+
 export interface PlayerProfile {
   id: string;
   number: string;
   nickname: string;
+  isReserve?: boolean;
   statusRu: string;
   statusEn: string;
+  roleRu: string;
+  roleEn: string;
+  perkRu: string;
+  perkEn: string;
+  traitRu: string;
+  traitEn: string;
+  metrics: PlayerMetric[];
   division: string;
-  gameId?: string; // Поле для игрового ID Standoff 2 (можно заполнить позже)
-  roleRu?: string; // Опционально: роль в будущем (сейчас не используется по ТЗ)
-  roleEn?: string;
+  gameId?: string;
   portraitUrl: string;
   countryCode: string;
   specTag: string;
@@ -19,15 +31,15 @@ export interface SocialChannel {
   id: string;
   name: string;
   handle: string;
-  url: string; // Поставьте реальную ссылку вместо '', когда появится аккаунт
+  url: string;
   statusRu: string;
   statusEn: string;
 }
 
 /**
  * ЕДИНЫЙ КОНФИГУРАЦИОННЫЙ ФАЙЛ КОМАНДЫ RED LIGHT 7 (RL7)
- * Здесь можно легко изменить никнеймы, номера, ссылки на соцсети, слоган и фотографии
- * без необходимости редактировать компоненты интерфейса.
+ * Содержит 5 игроков основы (L1tez, sharinganov, morph, hako, karat)
+ * и запасного игрока (delf1n), включая роли, отличительные особенности и характеристики.
  */
 export const TEAM_CONFIG = {
   brand: {
@@ -46,16 +58,29 @@ export const TEAM_CONFIG = {
   },
 
   /**
-   * ОСНОВНОЙ СОСТАВ КОМАНДЫ (ROSTER)
-   * Роли и капитан не указаны намеренно (в соответствии с актуальным составом).
+   * СОСТАВ КОМАНДЫ (5 ОСНОВНЫХ + 1 ЗАПАСНОЙ)
    */
   roster: [
     {
       id: 'rl7-01',
       number: '01',
       nickname: 'L1tez',
+      isReserve: false,
       statusRu: 'ОСНОВНОЙ СОСТАВ',
-      statusEn: 'ACTIVE ROSTER',
+      statusEn: 'STARTING FIVE',
+      roleRu: 'ENTRY FRAGGER // ОПЕН-ФРАГЕР',
+      roleEn: 'ENTRY FRAGGER',
+      perkRu: 'ВСКРЫТИЕ ПЛЕНТОВ И ПЕРВЫЙ КОНТАКТ',
+      perkEn: 'SPACE CREATOR & FIRST CONTACT',
+      traitRu:
+        'Агрессивный локомотив атаки. Задаёт высокий темп с первых секунд раунда, выигрывает стартовые дуэли и расчищает пространство для выхода команды на точку.',
+      traitEn:
+        'Explosive spearhead of the attack. Dictates early-round pace, secures opening duels, and creates space for site executes.',
+      metrics: [
+        { labelRu: 'ОПЕН-ДУЭЛИ (FIRST BLOOD)', labelEn: 'OPENING DUELS', value: 96 },
+        { labelRu: 'СКОРОСТЬ НАВОДКИ', labelEn: 'AIM VELOCITY', value: 94 },
+        { labelRu: 'АГРЕССИЯ И ТЕМП', labelEn: 'ENTRY AGGRESSION', value: 95 },
+      ],
       division: 'STANDOFF 2 // PRO DIVISION',
       portraitUrl: './assets/players/player-silhouette-1.png',
       countryCode: 'RL7-01',
@@ -65,8 +90,22 @@ export const TEAM_CONFIG = {
       id: 'rl7-02',
       number: '02',
       nickname: 'sharinganov',
+      isReserve: false,
       statusRu: 'ОСНОВНОЙ СОСТАВ',
-      statusEn: 'ACTIVE ROSTER',
+      statusEn: 'STARTING FIVE',
+      roleRu: 'SNIPER // ГЛАВНЫЙ СНАЙПЕР',
+      roleEn: 'PRIMARY AWPER / SNIPER',
+      perkRu: 'КОНТРОЛЬ ДИСТАНЦИИ И ФЛИК-ШОТЫ',
+      perkEn: 'LONG-RANGE LOCKDOWN & FLICKS',
+      traitRu:
+        'Хладнокровный снайпер с феноменальной реакцией. Полностью перекрывает ключевые магистрали карты и мгновенно наказывает соперника за малейшую ошибку на пике.',
+      traitEn:
+        'Ice-cold sniper with lightning reflexes. Locks down long sightlines and punishes even the slightest shoulder peek.',
+      metrics: [
+        { labelRu: 'ТОЧНОСТЬ СНАЙПИНГА', labelEn: 'SNIPER PRECISION', value: 97 },
+        { labelRu: 'КОНТРОЛЬ ЛИНИЙ', labelEn: 'LINE LOCKDOWN', value: 94 },
+        { labelRu: 'ХЛАДНОКРОВИЕ', labelEn: 'COMPOSURE', value: 93 },
+      ],
       division: 'STANDOFF 2 // PRO DIVISION',
       portraitUrl: './assets/players/player-silhouette-2.png',
       countryCode: 'RL7-02',
@@ -76,8 +115,22 @@ export const TEAM_CONFIG = {
       id: 'rl7-03',
       number: '03',
       nickname: 'morph',
+      isReserve: false,
       statusRu: 'ОСНОВНОЙ СОСТАВ',
-      statusEn: 'ACTIVE ROSTER',
+      statusEn: 'STARTING FIVE',
+      roleRu: 'LURKER // МАСТЕР КЛАТЧЕЙ',
+      roleEn: 'LURKER & CLUTCH SPECIALIST',
+      perkRu: 'ЧТЕНИЕ РОТАЦИЙ И СИТУАЦИИ 1vX',
+      perkEn: 'ROTATION READS & 1vX CLUTCHES',
+      traitRu:
+        'Теневой интеллект команды. Идеально чувствует тайминги перетяжек соперника, режет ротации в спину и вытаскивает самые безнадёжные клатчи в концовках раундов.',
+      traitEn:
+        'The shadow tactician. Reads enemy rotations with surgical timing, cuts off flanks, and thrives in high-pressure 1vX late rounds.',
+      metrics: [
+        { labelRu: 'ЧТЕНИЕ ИГРЫ (GAME SENSE)', labelEn: 'GAME SENSE & IQ', value: 96 },
+        { labelRu: 'РЕАЛИЗАЦИЯ КЛАТЧЕЙ', labelEn: 'CLUTCH CONVERSION', value: 95 },
+        { labelRu: 'ЧУВСТВО ТАЙМИНГА', labelEn: 'TIMING MASTERY', value: 94 },
+      ],
       division: 'STANDOFF 2 // PRO DIVISION',
       portraitUrl: './assets/players/player-silhouette-1.png',
       countryCode: 'RL7-03',
@@ -87,8 +140,22 @@ export const TEAM_CONFIG = {
       id: 'rl7-04',
       number: '04',
       nickname: 'hako',
+      isReserve: false,
       statusRu: 'ОСНОВНОЙ СОСТАВ',
-      statusEn: 'ACTIVE ROSTER',
+      statusEn: 'STARTING FIVE',
+      roleRu: 'SUPPORT // ОПОРНИК И РАСКИДКА',
+      roleEn: 'SUPPORT & SITE ANCHOR',
+      perkRu: 'ТАКТИЧЕСКИЕ ГРАНАТЫ И УДЕРЖАНИЕ ТОЧКИ',
+      perkEn: 'UTILITY PRECISION & SITE DEFENSE',
+      traitRu:
+        'Фундамент командной структуры RL7. Обеспечивает идеальную геометрию смоков и флешек под выход тиммейтов, а в защите намертво цементирует свой плент против численного преимущества.',
+      traitEn:
+        'Backbone of the RL7 tactical setup. Delivers pixel-perfect utility for executes and anchors defensive sites against multi-man pushes.',
+      metrics: [
+        { labelRu: 'ЭФФЕКТИВНОСТЬ ГРАНАТ', labelEn: 'UTILITY IMPACT', value: 96 },
+        { labelRu: 'ОБОРОНА ТОЧКИ (ANCHOR)', labelEn: 'SITE ANCHORING', value: 94 },
+        { labelRu: 'КОМАНДНЫЙ РАЗМЕН', labelEn: 'TRADE EFFICIENCY', value: 95 },
+      ],
       division: 'STANDOFF 2 // PRO DIVISION',
       portraitUrl: './assets/players/player-silhouette-2.png',
       countryCode: 'RL7-04',
@@ -98,12 +165,51 @@ export const TEAM_CONFIG = {
       id: 'rl7-05',
       number: '07',
       nickname: 'karat',
+      isReserve: false,
       statusRu: 'ОСНОВНОЙ СОСТАВ',
-      statusEn: 'ACTIVE ROSTER',
+      statusEn: 'STARTING FIVE',
+      roleRu: 'RIFLER / FLEX // УНИВЕРСАЛ',
+      roleEn: 'STAR RIFLER / FLEX',
+      perkRu: 'ЭТАЛОННЫЙ СПРЕЙ И ВТОРОЙ ТЕМП',
+      perkEn: 'ELITE SPRAY CONTROL & MULTI-ROLE',
+      traitRu:
+        'Главная огневая мощь на средних дистанциях. Отличается эталонным контролем зажима и мгновенным переключением между агрессивным пушем и расчётливым ретейком.',
+      traitEn:
+        'Relentless mid-range firepower. Combines textbook recoil control with seamless transitions between aggressive trading and calculated retakes.',
+      metrics: [
+        { labelRu: 'КОНТРОЛЬ СПРЕЯ (AIM)', labelEn: 'RIFLE MECHANICS', value: 96 },
+        { labelRu: 'УНИВЕРСАЛЬНОСТЬ', labelEn: 'ROLE ADAPTABILITY', value: 95 },
+        { labelRu: 'УСПЕШНОСТЬ РЕТЕЙКОВ', labelEn: 'RETAKE EXECUTION', value: 93 },
+      ],
       division: 'STANDOFF 2 // PRO DIVISION',
       portraitUrl: './assets/players/player-silhouette-1.png',
       countryCode: 'RL7-07',
       specTag: 'UNIT // ALPHA-07',
+    },
+    {
+      id: 'rl7-06',
+      number: '06',
+      nickname: 'delf1n',
+      isReserve: true,
+      statusRu: 'ЗАПАСНОЙ ИГРОК // 6TH MAN',
+      statusEn: 'RESERVE // IMPACT SUB',
+      roleRu: '6TH PLAYER // ТАКТИЧЕСКИЙ ДЖОКЕР',
+      roleEn: '6TH PLAYER / WILDCARD SUB',
+      perkRu: 'ГИБКАЯ СМЕНА СТИЛЯ И ИМПАКТ С ЗАМЕНЫ',
+      perkEn: 'TEMPO SHIFTER & MULTI-POSITION',
+      traitRu:
+        'Секретное оружие ротации RL7. Способен выйти на любую карту серии, закрыть дефицитную позицию без просадки по стрельбе и сломать подготовку оппонента нестандартными мувами.',
+      traitEn:
+        'RL7 tactical wildcard. Steps into any map or role on demand, disrupts opponent preparation, and injects fresh tempo mid-series.',
+      metrics: [
+        { labelRu: 'ГИБКОСТЬ ПОЗИЦИЙ', labelEn: 'POSITIONAL VERSATILITY', value: 95 },
+        { labelRu: 'СМЕНА ТЕМПА ИГРЫ', labelEn: 'TEMPO DISRUPTION', value: 94 },
+        { labelRu: 'ИМПАКТ С ЗАМЕНЫ', labelEn: 'INSTANT IMPACT', value: 92 },
+      ],
+      division: 'STANDOFF 2 // PRO DIVISION',
+      portraitUrl: './assets/players/player-silhouette-2.png',
+      countryCode: 'RL7-06',
+      specTag: 'UNIT // RESERVE-06',
     },
   ] as PlayerProfile[],
 
@@ -149,8 +255,6 @@ export const TEAM_CONFIG = {
 
   /**
    * СОЦИАЛЬНЫЕ СЕТИ И МЕДИА-КАНАЛЫ
-   * Ссылки оставлены пустыми ('') до запуска официальных страниц — сайт отобразит их
-   * со стильными векторными иконками и статусом ожидания без битых переходов.
    */
   socials: [
     {

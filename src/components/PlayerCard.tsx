@@ -11,11 +11,17 @@ interface PlayerCardProps {
 
 export const PlayerCard: React.FC<PlayerCardProps> = ({ player, lang, featured = false }) => {
   return (
-    <article className={`rl7-player-card corner-frame ${featured ? 'is-featured' : ''}`}>
-      {/* Верхняя техническая планка */}
+    <article
+      className={`rl7-player-card corner-frame ${featured ? 'is-featured' : ''} ${
+        player.isReserve ? 'is-reserve-card' : ''
+      }`}
+    >
+      {/* Верхняя планка карточки */}
       <div className="rl7-player-topbar">
         <span className="rl7-player-unit">{player.specTag}</span>
-        <span className="rl7-player-number">#{player.number}</span>
+        <span className={`rl7-player-number ${player.isReserve ? 'reserve-badge' : ''}`}>
+          #{player.number}
+        </span>
       </div>
 
       {/* Визуальный блок с силуэтом игрока в белой джерси RL7 */}
@@ -30,6 +36,12 @@ export const PlayerCard: React.FC<PlayerCardProps> = ({ player, lang, featured =
           loading="lazy"
         />
         <div className="rl7-player-vignette" />
+
+        {/* Бейдж роли поверх нижней части портрета */}
+        <div className="rl7-player-role-pill">
+          {lang === 'ru' ? player.roleRu : player.roleEn}
+        </div>
+
         <div className="rl7-player-crest">
           <RL7Logo variant="mark" />
         </div>
@@ -38,7 +50,9 @@ export const PlayerCard: React.FC<PlayerCardProps> = ({ player, lang, featured =
       {/* Информационная панель игрока */}
       <div className="rl7-player-info">
         <div className="rl7-player-status-row">
-          <span className="rl7-player-dot" />
+          <span
+            className={`rl7-player-dot ${player.isReserve ? 'reserve-dot' : ''}`}
+          />
           <span className="rl7-player-status">
             {lang === 'ru' ? player.statusRu : player.statusEn}
           </span>
@@ -46,15 +60,38 @@ export const PlayerCard: React.FC<PlayerCardProps> = ({ player, lang, featured =
 
         <h3 className="rl7-player-nickname">{player.nickname}</h3>
 
-        <div className="rl7-player-meta">
-          <div className="rl7-player-meta-cell">
-            <span className="meta-key">{lang === 'ru' ? 'ДИСЦИПЛИНА' : 'DISCIPLINE'}</span>
-            <span className="meta-val">STANDOFF 2</span>
-          </div>
-          <div className="rl7-player-meta-cell">
-            <span className="meta-key">{lang === 'ru' ? 'ИНДЕКС' : 'CALLSIGN'}</span>
-            <span className="meta-val">{player.countryCode}</span>
-          </div>
+        {/* Отличительная особенность / перк */}
+        <div className="rl7-player-perk-box">
+          <span className="perk-label">
+            {lang === 'ru' ? 'ОСОБЕННОСТЬ:' : 'SIGNATURE TRAIT:'}
+          </span>
+          <strong className="perk-title">
+            {lang === 'ru' ? player.perkRu : player.perkEn}
+          </strong>
+        </div>
+
+        <p className="rl7-player-trait-desc">
+          {lang === 'ru' ? player.traitRu : player.traitEn}
+        </p>
+
+        {/* Шкалы ключевых характеристик в стиле iOS */}
+        <div className="rl7-player-metrics">
+          {player.metrics.map((m) => (
+            <div key={m.labelEn} className="metric-bar-item">
+              <div className="metric-bar-top">
+                <span className="metric-name">
+                  {lang === 'ru' ? m.labelRu : m.labelEn}
+                </span>
+                <span className="metric-val">{m.value}</span>
+              </div>
+              <div className="metric-track">
+                <div
+                  className="metric-fill"
+                  style={{ width: `${m.value}%` }}
+                />
+              </div>
+            </div>
+          ))}
         </div>
       </div>
     </article>

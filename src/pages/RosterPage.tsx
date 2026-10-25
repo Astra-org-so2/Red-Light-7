@@ -20,25 +20,25 @@ export const RosterPage: React.FC<RosterPageProps> = ({ lang }) => {
         {/* Шапка страницы состава */}
         <div className="section-header-grid">
           <div>
-            <span className="tech-label">DIRECTORY // 02 — ACTIVE LINEUP</span>
+            <span className="tech-label">DIRECTORY // 02 — ACTIVE LINEUP &amp; RESERVE</span>
             <h1 className="section-title-en">
               STANDOFF 2 <span>ROSTER</span>
             </h1>
             <p className="section-subtitle-ru">
               {lang === 'ru'
-                ? 'Утверждённый состав RED LIGHT 7 (RL7). Все пять участников выступают в едином ранге основного состава без жёсткой фиксации ролей и капитана.'
-                : 'Confirmed RED LIGHT 7 (RL7) Standoff 2 lineup. All five athletes operate with equal authority in a fluid, roleless tactical system.'}
+                ? 'Утверждённый боевой состав RED LIGHT 7 (RL7): стартовая пятёрка с чётким распределением тактических ролей и джокер ротации (6-й игрок).'
+                : 'Confirmed RED LIGHT 7 (RL7) Standoff 2 unit: starting five with specialized tactical roles plus our impact sixth-man wildcard.'}
             </p>
           </div>
 
           <div className="roster-header-meta">
             <div className="meta-pill">
-              <span>DIVISION:</span>
-              <strong>STANDOFF 2</strong>
+              <span>STARTING:</span>
+              <strong>05 PLAYERS</strong>
             </div>
             <div className="meta-pill">
-              <span>PLAYERS:</span>
-              <strong>05 ACTIVE</strong>
+              <span>RESERVE:</span>
+              <strong>01 SUB (DELF1N)</strong>
             </div>
           </div>
         </div>
@@ -57,7 +57,9 @@ export const RosterPage: React.FC<RosterPageProps> = ({ lang }) => {
                   className={`spotlight-tab-btn ${isSelected ? 'is-active' : ''}`}
                   onClick={() => setSelectedId(player.id)}
                 >
-                  <span className="tab-num">#{player.number}</span>
+                  <span className="tab-num">
+                    #{player.number} {player.isReserve ? '// SUB' : ''}
+                  </span>
                   <span className="tab-nick">{player.nickname}</span>
                 </button>
               );
@@ -77,7 +79,7 @@ export const RosterPage: React.FC<RosterPageProps> = ({ lang }) => {
               />
             </div>
 
-            {/* Технические данные профиля */}
+            {/* Технические данные профиля, роль и характеристики */}
             <div className="spotlight-details">
               <div className="spotlight-top-row">
                 <span className="tech-label">{activePlayer.specTag}</span>
@@ -86,7 +88,7 @@ export const RosterPage: React.FC<RosterPageProps> = ({ lang }) => {
 
               <div className="spotlight-name-block">
                 <span className="spotlight-callsign-label">
-                  {lang === 'ru' ? 'ИГРОВОЙ НИКНЕЙМ // CALLSIGN' : 'OFFICIAL CALLSIGN'}
+                  {lang === 'ru' ? activePlayer.roleRu : activePlayer.roleEn}
                 </span>
                 <h2 className="spotlight-nickname">{activePlayer.nickname}</h2>
               </div>
@@ -105,43 +107,63 @@ export const RosterPage: React.FC<RosterPageProps> = ({ lang }) => {
                   </span>
                 </div>
                 <div className="spec-box">
-                  <span className="spec-k">{lang === 'ru' ? 'ДИСЦИПЛИНА' : 'DISCIPLINE'}</span>
-                  <span className="spec-v">STANDOFF 2</span>
+                  <span className="spec-k">{lang === 'ru' ? 'СПЕЦИАЛИЗАЦИЯ' : 'TACTICAL ROLE'}</span>
+                  <span className="spec-v">
+                    {lang === 'ru' ? activePlayer.roleRu : activePlayer.roleEn}
+                  </span>
                 </div>
                 <div className="spec-box">
-                  <span className="spec-k">{lang === 'ru' ? 'ЭКИПИРОВКА' : 'ASSIGNED KIT'}</span>
-                  <span className="spec-v">RL7 WHITE PRO (VAR. B)</span>
+                  <span className="spec-k">{lang === 'ru' ? 'ФИРМЕННЫЙ ПЕРК' : 'SIGNATURE PERK'}</span>
+                  <span className="spec-v" style={{ color: 'var(--brand-red)' }}>
+                    {lang === 'ru' ? activePlayer.perkRu : activePlayer.perkEn}
+                  </span>
                 </div>
               </div>
 
+              {/* Шкалы характеристик в досье */}
+              <div className="spotlight-metrics-box">
+                {activePlayer.metrics.map((m) => (
+                  <div key={m.labelEn} className="spotlight-metric-row">
+                    <div className="spotlight-metric-head">
+                      <span>{lang === 'ru' ? m.labelRu : m.labelEn}</span>
+                      <strong>{m.value} / 100</strong>
+                    </div>
+                    <div className="spotlight-metric-track">
+                      <div
+                        className="spotlight-metric-fill"
+                        style={{ width: `${m.value}%` }}
+                      />
+                    </div>
+                  </div>
+                ))}
+              </div>
+
               <p className="spotlight-note">
-                {lang === 'ru'
-                  ? 'Участник основного состава RED LIGHT 7. Индивидуальные игровые ID и турнирные показатели обновляются по мере проведения официальных матчей.'
-                  : 'Member of the RED LIGHT 7 starting lineup. Official game IDs and tournament performance metrics are updated upon verified match completion.'}
+                {lang === 'ru' ? activePlayer.traitRu : activePlayer.traitEn}
               </p>
             </div>
           </div>
         </div>
 
-        {/* Полная сетка карточек всех 5 игроков */}
+        {/* Полная сетка карточек всех 6 игроков (5 основных + 1 запасной) */}
         <div className="rl7-full-roster-section">
           <div className="roster-subbar">
             <span className="tech-label">
               {lang === 'ru'
-                ? 'ПОЛНЫЙ СОСТАВ // ВСЕ 5 ИГРОКОВ'
-                : 'COMPLETE STARTING FIVE // ALL UNITS'}
+                ? 'ПОЛНЫЙ СОСТАВ // 5 ОСНОВНЫХ + 1 ЗАПАСНОЙ'
+                : 'COMPLETE SQUAD // 5 STARTING + 1 RESERVE'}
             </span>
             <span className="roster-subbar-right">
-              L1TEZ / SHARINGANOV / MORPH / HAKO / KARAT
+              L1TEZ / SHARINGANOV / MORPH / HAKO / KARAT + DELF1N (SUB)
             </span>
           </div>
 
-          <div className="rl7-roster-grid-5">
+          <div className="rl7-roster-grid-6">
             {TEAM_CONFIG.roster.map((player) => (
               <div
                 key={player.id}
                 onClick={() => setSelectedId(player.id)}
-                style={{ cursor: 'pointer' }}
+                style={{ cursor: 'pointer', display: 'flex' }}
               >
                 <PlayerCard
                   player={player}

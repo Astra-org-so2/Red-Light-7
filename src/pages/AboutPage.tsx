@@ -11,12 +11,12 @@ export const AboutPage: React.FC<AboutPageProps> = ({ lang }) => {
   const pillars = [
     {
       num: '01',
-      titleRu: 'КОМАНДНЫЙ ПАРИТЕТ',
-      titleEn: 'COLLECTIVE PARITY',
+      titleRu: 'ТАКТИЧЕСКАЯ СИНЕРГИЯ 5+1',
+      titleEn: 'TACTICAL 5+1 SYNERGY',
       descRu:
-        'В составе RL7 нет формальной иерархии или выделенного капитана. Каждый из пяти игроков (L1tez, sharinganov, morph, hako, karat) принимает тактические решения и несёт равную ответственность за раунд.',
+        'Чёткое разделение ролей внутри стартовой пятёрки (L1tez, sharinganov, morph, hako, karat) дополняется шестым игроком-джокером (delf1n), что позволяет гибко менять рисунок игры по ходу серии.',
       descEn:
-        'RL7 operates without rigid hierarchy. All five starting players share equal tactical authority and mid-round responsibility.',
+        'Specialized role distribution across our starting five (L1tez, sharinganov, morph, hako, karat) reinforced by our sixth-man wildcard (delf1n) for mid-series tactical shifts.',
     },
     {
       num: '02',

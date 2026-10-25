@@ -198,7 +198,7 @@
   padding: 8px;
   border-radius: var(--radius-md);
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(6, 1fr);
   gap: 6px;
   background-color: rgba(18, 18, 22, 0.78);
   backdrop-filter: blur(20px) saturate(180%);
@@ -272,8 +272,8 @@
 
 .rl7-roster-grid-5 {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 18px;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
 }
 
 /* Сплит-секция (Форма + Матчи) в стиле iOS Bento */
