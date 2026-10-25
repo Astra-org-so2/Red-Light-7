@@ -184,6 +184,181 @@
   color: var(--text-primary);
 }
 
+/* Пункт 7: Форма вызова на прак (Scrim Builder) */
+.rl7-scrim-section {
+  margin-bottom: 84px;
+}
+
+.scrim-builder-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 18px;
+  padding: 20px;
+}
+
+.scrim-form-col {
+  padding: 24px;
+  border-radius: var(--radius-lg);
+  background-color: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.scrim-input-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+.scrim-field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.scrim-field label {
+  font-family: var(--font-mono);
+  font-size: 0.64rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: var(--text-secondary);
+}
+
+.scrim-field input {
+  padding: 13px 16px;
+  border-radius: var(--radius-md);
+  background-color: rgba(0, 0, 0, 0.45);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+  transition: border-color 0.2s ease;
+}
+
+.scrim-field input:focus {
+  outline: none;
+  border-color: var(--brand-red);
+}
+
+.scrim-pills-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.scrim-pill-btn {
+  padding: 9px 15px;
+  border-radius: var(--radius-pill);
+  background-color: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--text-secondary);
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.scrim-pill-btn:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: var(--text-primary);
+}
+
+.scrim-pill-btn.is-selected {
+  background-color: var(--brand-red);
+  border-color: var(--brand-red);
+  color: var(--text-primary);
+  box-shadow: 0 6px 16px -4px rgba(225, 6, 22, 0.55);
+}
+
+.scrim-submit-btn {
+  width: 100%;
+  margin-top: 6px;
+}
+
+.scrim-preview-col {
+  padding: 24px;
+  border-radius: var(--radius-lg);
+  background-color: #060608;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.scrim-preview-header {
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--font-mono);
+  font-size: 0.66rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: var(--text-secondary);
+}
+
+.scrim-versus-banner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px;
+  border-radius: var(--radius-md);
+  background-color: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+.vs-side {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.vs-side strong {
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: var(--text-primary);
+}
+
+.vs-side span {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  color: var(--text-secondary);
+}
+
+.vs-badge {
+  padding: 5px 12px;
+  border-radius: var(--radius-pill);
+  background-color: rgba(225, 6, 22, 0.16);
+  color: var(--brand-red);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+}
+
+.scrim-code-output {
+  padding: 16px;
+  border-radius: var(--radius-md);
+  background-color: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+  line-height: 1.65;
+  color: var(--text-primary);
+  white-space: pre-wrap;
+  overflow-x: auto;
+}
+
+.scrim-preview-hint {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
 /* Раздел Достижений */
 .achievements-empty-grid {
   display: grid;
@@ -253,6 +428,7 @@
 
 @media (max-width: 960px) {
   .tba-slots-grid,
+  .scrim-builder-grid,
   .achievements-empty-grid {
     grid-template-columns: 1fr;
   }
@@ -262,5 +438,9 @@
   .tba-monitor-content {
     flex-direction: column;
     padding: 24px 18px;
+  }
+
+  .scrim-input-row {
+    grid-template-columns: 1fr;
   }
 }

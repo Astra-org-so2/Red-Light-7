@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { Language, TEAM_CONFIG } from '../data/teamData';
 import { PlayerCard } from '../components/PlayerCard';
 import { RL7Logo } from '../components/RL7Logo';
+import { RadarChart } from '../components/RadarChart';
+import { MapPoolSection } from '../components/MapPoolSection';
 import './RosterPage.css';
 
 interface RosterPageProps {
@@ -10,9 +12,19 @@ interface RosterPageProps {
 
 export const RosterPage: React.FC<RosterPageProps> = ({ lang }) => {
   const [selectedId, setSelectedId] = useState<string>(TEAM_CONFIG.roster[0].id);
+  const [copiedConfig, setCopiedConfig] = useState<boolean>(false);
 
   const activePlayer =
     TEAM_CONFIG.roster.find((p) => p.id === selectedId) || TEAM_CONFIG.roster[0];
+
+  const handleCopyConfig = () => {
+    const textToCopy = `${activePlayer.nickname} (RL7) SO2 Config — Device: ${activePlayer.proSettings.device} | Sens: ${activePlayer.proSettings.sensitivity} | Scope: ${activePlayer.proSettings.scopeSens} | Accel: ${activePlayer.proSettings.acceleration} | Code: ${activePlayer.proSettings.configCode}`;
+    if (navigator.clipboard) {
+      navigator.clipboard.writeText(textToCopy);
+    }
+    setCopiedConfig(true);
+    setTimeout(() => setCopiedConfig(false), 2600);
+  };
 
   return (
     <div className="page-transition rl7-roster-page">
@@ -26,8 +38,8 @@ export const RosterPage: React.FC<RosterPageProps> = ({ lang }) => {
             </h1>
             <p className="section-subtitle-ru">
               {lang === 'ru'
-                ? 'Утверждённый боевой состав RED LIGHT 7 (RL7): стартовая пятёрка с чётким распределением тактических ролей и джокер ротации (6-й игрок).'
-                : 'Confirmed RED LIGHT 7 (RL7) Standoff 2 unit: starting five with specialized tactical roles plus our impact sixth-man wildcard.'}
+                ? 'Утверждённый боевой состав RED LIGHT 7 (RL7): стартовая пятёрка с чётким распределением ролей, джокер ротации (delf1n), радар скиллов, игровые настройки и тактический Map Pool.'
+                : 'Confirmed RED LIGHT 7 (RL7) Standoff 2 unit: starting five with specialized roles, sixth-man wildcard (delf1n), skill radar, pro settings, and tactical Map Pool.'}
             </p>
           </div>
 
@@ -55,7 +67,10 @@ export const RosterPage: React.FC<RosterPageProps> = ({ lang }) => {
                   role="tab"
                   aria-selected={isSelected}
                   className={`spotlight-tab-btn ${isSelected ? 'is-active' : ''}`}
-                  onClick={() => setSelectedId(player.id)}
+                  onClick={() => {
+                    setSelectedId(player.id);
+                    setCopiedConfig(false);
+                  }}
                 >
                   <span className="tab-num">
                     #{player.number} {player.isReserve ? '// SUB' : ''}
@@ -67,19 +82,24 @@ export const RosterPage: React.FC<RosterPageProps> = ({ lang }) => {
           </div>
 
           <div className="spotlight-body">
-            {/* Портрет в белой форме */}
-            <div className="spotlight-portrait-box">
-              <div className="spotlight-big-num" aria-hidden="true">
-                {activePlayer.number}
+            {/* Левая колонка: Портрет в белой форме + Радар навыков */}
+            <div className="spotlight-left-stack">
+              <div className="spotlight-portrait-box">
+                <div className="spotlight-big-num" aria-hidden="true">
+                  {activePlayer.number}
+                </div>
+                <img
+                  src={activePlayer.portraitUrl}
+                  alt={`${activePlayer.nickname} in RL7 White Pro Kit`}
+                  className="spotlight-portrait-img"
+                />
               </div>
-              <img
-                src={activePlayer.portraitUrl}
-                alt={`${activePlayer.nickname} in RL7 White Pro Kit`}
-                className="spotlight-portrait-img"
-              />
+
+              {/* Пункт 3: Векторная радар-диаграмма скиллов */}
+              <RadarChart stats={activePlayer.radar} lang={lang} />
             </div>
 
-            {/* Технические данные профиля, роль и характеристики */}
+            {/* Правая колонка: Роль, перк, характеристики + Пункт 1: Pro Settings & Arsenal */}
             <div className="spotlight-details">
               <div className="spotlight-top-row">
                 <span className="tech-label">{activePlayer.specTag}</span>
@@ -138,6 +158,75 @@ export const RosterPage: React.FC<RosterPageProps> = ({ lang }) => {
                 ))}
               </div>
 
+              {/* Пункт 1: PRO SETTINGS, ДЕВАЙСЫ И ЛЮБИМОЕ ОРУЖИЕ STANDOFF 2 */}
+              <div className="pro-settings-card">
+                <div className="pro-settings-header">
+                  <div>
+                    <span className="pro-settings-eyebrow">
+                      STANDOFF 2 PRO CONFIG // DEVICE &amp; SENSITIVITY
+                    </span>
+                    <h3 className="pro-settings-title">
+                      {lang === 'ru'
+                        ? `ИГРОВЫЕ НАСТРОЙКИ ${activePlayer.nickname.toUpperCase()}`
+                        : `${activePlayer.nickname.toUpperCase()} PRO SETTINGS`}
+                    </h3>
+                  </div>
+
+                  <button
+                    type="button"
+                    className={`copy-config-btn ${copiedConfig ? 'is-copied' : ''}`}
+                    onClick={handleCopyConfig}
+                  >
+                    {copiedConfig
+                      ? lang === 'ru'
+                        ? '✓ СКОПИРОВАНО'
+                        : '✓ COPIED'
+                      : lang === 'ru'
+                        ? 'СКОПИРОВАТЬ КОНФИГ'
+                        : 'COPY CONFIG'}
+                  </button>
+                </div>
+
+                <div className="pro-settings-grid">
+                  <div className="pro-setting-cell">
+                    <span className="ps-k">{lang === 'ru' ? 'ДЕВАЙС / ЭКРАН' : 'DEVICE / HZ'}</span>
+                    <span className="ps-v">{activePlayer.proSettings.device}</span>
+                  </div>
+                  <div className="pro-setting-cell">
+                    <span className="ps-k">{lang === 'ru' ? 'РАСКЛАДКА (CLAW)' : 'HUD LAYOUT'}</span>
+                    <span className="ps-v">
+                      {lang === 'ru'
+                        ? activePlayer.proSettings.layoutRu
+                        : activePlayer.proSettings.layoutEn}
+                    </span>
+                  </div>
+                  <div className="pro-setting-cell">
+                    <span className="ps-k">{lang === 'ru' ? 'ЧУВСТВИТЕЛЬНОСТЬ' : 'SENSITIVITY'}</span>
+                    <span className="ps-v" style={{ color: 'var(--brand-red)' }}>
+                      {activePlayer.proSettings.sensitivity}
+                    </span>
+                  </div>
+                  <div className="pro-setting-cell">
+                    <span className="ps-k">{lang === 'ru' ? 'СЕНСА В ПРИЦЕЛЕ' : 'SCOPE SENS'}</span>
+                    <span className="ps-v">{activePlayer.proSettings.scopeSens}</span>
+                  </div>
+                  <div className="pro-setting-cell">
+                    <span className="ps-k">{lang === 'ru' ? 'УСКОРЕНИЕ' : 'ACCELERATION'}</span>
+                    <span className="ps-v">{activePlayer.proSettings.acceleration}</span>
+                  </div>
+                  <div className="pro-setting-cell">
+                    <span className="ps-k">{lang === 'ru' ? 'ФИРМЕННЫЙ АРСЕНАЛ' : 'SIGNATURE WEAPONS'}</span>
+                    <div className="weapons-chips">
+                      {activePlayer.proSettings.weapons.map((w) => (
+                        <span key={w} className="weapon-chip">
+                          {w}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </div>
+
               <p className="spotlight-note">
                 {lang === 'ru' ? activePlayer.traitRu : activePlayer.traitEn}
               </p>
@@ -162,7 +251,10 @@ export const RosterPage: React.FC<RosterPageProps> = ({ lang }) => {
             {TEAM_CONFIG.roster.map((player) => (
               <div
                 key={player.id}
-                onClick={() => setSelectedId(player.id)}
+                onClick={() => {
+                  setSelectedId(player.id);
+                  window.scrollTo({ top: 140, behavior: 'smooth' });
+                }}
                 style={{ cursor: 'pointer', display: 'flex' }}
               >
                 <PlayerCard
@@ -174,6 +266,9 @@ export const RosterPage: React.FC<RosterPageProps> = ({ lang }) => {
             ))}
           </div>
         </div>
+
+        {/* Пункт 5: Интерактивный Map Pool Standoff 2 и позиции игроков */}
+        <MapPoolSection lang={lang} />
       </div>
     </div>
   );

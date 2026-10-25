@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Language, TEAM_CONFIG } from '../data/teamData';
 import { PlayerCard } from '../components/PlayerCard';
+import { MapPoolSection } from '../components/MapPoolSection';
 import { ArrowUpRightIcon, CrosshairIcon } from '../components/SocialIcons';
 import './HomePage.css';
 
@@ -141,6 +142,9 @@ export const HomePage: React.FC<HomePageProps> = ({ lang }) => {
               <PlayerCard key={player.id} player={player} lang={lang} />
             ))}
           </div>
+
+          {/* Интерактивный Map Pool Standoff 2 */}
+          <MapPoolSection lang={lang} />
         </div>
       </section>
 
