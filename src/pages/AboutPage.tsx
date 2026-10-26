@@ -11,12 +11,12 @@ export const AboutPage: React.FC<AboutPageProps> = ({ lang }) => {
   const pillars = [
     {
       num: '01',
-      titleRu: 'ТАКТИЧЕСКАЯ СИНЕРГИЯ 5+1',
-      titleEn: 'TACTICAL 5+1 SYNERGY',
+      titleRu: 'ТАКТИЧЕСКАЯ СИНЕРГИЯ 5V5',
+      titleEn: 'TACTICAL 5V5 SYNERGY',
       descRu:
-        'Чёткое разделение ролей внутри стартовой пятёрки (L1tez, sharinganov, morph, hako, karat) дополняется шестым игроком-джокером (delf1n), что позволяет гибко менять рисунок игры по ходу серии.',
+        'Чёткое разделение ролей внутри стартовой пятёрки (L1tez, sharinganov, morph, hako, karat) обеспечивает полный контроль карты и мгновенную адаптацию по ходу серии.',
       descEn:
-        'Specialized role distribution across our starting five (L1tez, sharinganov, morph, hako, karat) reinforced by our sixth-man wildcard (delf1n) for mid-series tactical shifts.',
+        'Specialized role distribution across our starting five (L1tez, sharinganov, morph, hako, karat) ensures complete map control and mid-series adaptability.',
     },
     {
       num: '02',

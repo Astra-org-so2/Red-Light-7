@@ -128,8 +128,8 @@ export const MatchesPage: React.FC<MatchesPageProps> = ({ lang }) => {
               </h2>
               <p className="tba-subtext">
                 {lang === 'ru'
-                  ? 'Состав RL7 (L1tez, sharinganov, morph, hako, karat + delf1n) проходит тренировочный цикл и открыт для праков. Даты турнирных матчей будут опубликованы после официальной жеребьёвки.'
-                  : 'The RL7 squad (L1tez, sharinganov, morph, hako, karat + delf1n) is in an active scrimmage block. Official tournament dates will appear here once brackets are locked.'}
+                  ? 'Состав RL7 (L1tez, sharinganov, morph, hako, karat) проходит тренировочный цикл и открыт для праков. Даты турнирных матчей будут опубликованы после официальной жеребьёвки.'
+                  : 'The RL7 squad (L1tez, sharinganov, morph, hako, karat) is in an active scrimmage block. Official tournament dates will appear here once brackets are locked.'}
               </p>
             </div>
           </div>

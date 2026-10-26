@@ -32,14 +32,14 @@ export const RosterPage: React.FC<RosterPageProps> = ({ lang }) => {
         {/* Шапка страницы состава */}
         <div className="section-header-grid">
           <div>
-            <span className="tech-label">DIRECTORY // 02 — ACTIVE LINEUP &amp; RESERVE</span>
+            <span className="tech-label">DIRECTORY // 02 — ACTIVE STARTING LINEUP</span>
             <h1 className="section-title-en">
               STANDOFF 2 <span>ROSTER</span>
             </h1>
             <p className="section-subtitle-ru">
               {lang === 'ru'
-                ? 'Утверждённый боевой состав RED LIGHT 7 (RL7): стартовая пятёрка с чётким распределением ролей, джокер ротации (delf1n), радар скиллов, игровые настройки и тактический Map Pool.'
-                : 'Confirmed RED LIGHT 7 (RL7) Standoff 2 unit: starting five with specialized roles, sixth-man wildcard (delf1n), skill radar, pro settings, and tactical Map Pool.'}
+                ? 'Утверждённый боевой состав RED LIGHT 7 (RL7): стартовая пятёрка с чётким распределением ролей, радар скиллов, игровые настройки (только смартфоны) и тактический Map Pool.'
+                : 'Confirmed RED LIGHT 7 (RL7) Standoff 2 unit: starting five with specialized roles, skill radar, smartphone pro settings, and tactical Map Pool.'}
             </p>
           </div>
 
@@ -49,8 +49,8 @@ export const RosterPage: React.FC<RosterPageProps> = ({ lang }) => {
               <strong>05 PLAYERS</strong>
             </div>
             <div className="meta-pill">
-              <span>RESERVE:</span>
-              <strong>01 SUB (DELF1N)</strong>
+              <span>FORMAT:</span>
+              <strong>5V5 COMPETITIVE</strong>
             </div>
           </div>
         </div>
@@ -236,16 +236,16 @@ export const RosterPage: React.FC<RosterPageProps> = ({ lang }) => {
           </div>
         </div>
 
-        {/* Полная сетка карточек всех 6 игроков (5 основных + 1 запасной) */}
+        {/* Полная сетка карточек всех 5 игроков */}
         <div className="rl7-full-roster-section">
           <div className="roster-subbar">
             <span className="tech-label">
               {lang === 'ru'
-                ? 'ПОЛНЫЙ СОСТАВ // 5 ОСНОВНЫХ + 1 ЗАПАСНОЙ'
-                : 'COMPLETE SQUAD // 5 STARTING + 1 RESERVE'}
+                ? 'ПОЛНЫЙ СОСТАВ // 5 ИГРОКОВ ОСНОВЫ'
+                : 'COMPLETE SQUAD // STARTING FIVE'}
             </span>
             <span className="roster-subbar-right">
-              L1TEZ / SHARINGANOV / MORPH / HAKO / KARAT + DELF1N (SUB)
+              L1TEZ / SHARINGANOV / MORPH / HAKO / KARAT
             </span>
           </div>
 

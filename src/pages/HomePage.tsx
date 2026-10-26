@@ -61,7 +61,7 @@ export const HomePage: React.FC<HomePageProps> = ({ lang }) => {
                 </div>
                 <div className="hero-stat-cell">
                   <span className="stat-k">{lang === 'ru' ? 'СОСТАВ КОМАНДЫ' : 'SQUAD SIZE'}</span>
-                  <span className="stat-v">5 MAIN + 1 SUB</span>
+                  <span className="stat-v">5 PLAYERS // 5V5</span>
                 </div>
                 <div className="hero-stat-cell">
                   <span className="stat-k">{lang === 'ru' ? 'ЭКИПИРОВКА' : 'OFFICIAL KIT'}</span>
@@ -76,7 +76,7 @@ export const HomePage: React.FC<HomePageProps> = ({ lang }) => {
             <div className="rl7-hero-visual corner-frame">
               <div className="rl7-hero-visual-header">
                 <span>// VISUAL ID: RL7-LINEUP-2026</span>
-                <span style={{ color: 'var(--brand-red)' }}>5 MAIN + 1 IMPACT SUB</span>
+                <span style={{ color: 'var(--brand-red)' }}>STARTING FIVE // 5V5</span>
               </div>
 
               <div className="rl7-hero-poster-wrap">
@@ -111,25 +111,25 @@ export const HomePage: React.FC<HomePageProps> = ({ lang }) => {
           <span className="ticker-dot" />
           <span>L1TEZ / SHARINGANOV / MORPH / HAKO / KARAT</span>
           <span className="ticker-dot" />
-          <span>RESERVE WILDCARD: DELF1N</span>
+          <span>STANDOFF 2 COMPETITIVE DIVISION</span>
           <span className="ticker-dot" />
           <span>WHITE PRO KIT EDITION</span>
         </div>
       </div>
 
-      {/* 2. ROSTER PREVIEW — Состав команды (5 основных + 1 запасной) */}
+      {/* 2. ROSTER PREVIEW — Состав команды (5 игроков основы) */}
       <section className="rl7-home-section">
         <div className="swiss-container">
           <div className="section-header-grid">
             <div>
-              <span className="tech-label">01 // ACTIVE LINEUP &amp; RESERVE</span>
+              <span className="tech-label">01 // ACTIVE STARTING LINEUP</span>
               <h2 className="section-title-en">
                 ROSTER <span>RL7</span>
               </h2>
               <p className="section-subtitle-ru">
                 {lang === 'ru'
-                  ? 'Боевой состав организации RED LIGHT 7 по дисциплине Standoff 2: пятёрка основы с узкой тактической специализацией и шестой игрок ротации (delf1n).'
-                  : 'RED LIGHT 7 competitive Standoff 2 squad: specialized starting five plus our sixth-man tactical wildcard (delf1n).'}
+                  ? 'Боевой состав организации RED LIGHT 7 по дисциплине Standoff 2: сыгранная пятёрка основы с чёткой тактической специализацией каждого игрока.'
+                  : 'RED LIGHT 7 competitive Standoff 2 squad: our synchronized starting five with specialized tactical roles.'}
               </p>
             </div>
             <Link to="/roster" className="btn-rl7 btn-rl7-outline">
