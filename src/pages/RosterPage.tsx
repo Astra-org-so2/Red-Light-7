@@ -163,7 +163,9 @@ export const RosterPage: React.FC<RosterPageProps> = ({ lang }) => {
                 <div className="pro-settings-header">
                   <div>
                     <span className="pro-settings-eyebrow">
-                      STANDOFF 2 PRO CONFIG // DEVICE &amp; SENSITIVITY
+                      {lang === 'ru'
+                        ? 'ТУРНИРНЫЙ РЕГЛАМЕНТ // ТОЛЬКО СМАРТФОНЫ (iOS / ANDROID)'
+                        : 'TOURNAMENT LEGAL // SMARTPHONE ONLY (iOS / ANDROID)'}
                     </span>
                     <h3 className="pro-settings-title">
                       {lang === 'ru'
