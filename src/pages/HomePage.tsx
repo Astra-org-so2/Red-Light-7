@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { Language, TEAM_CONFIG } from '../data/teamData';
 import { PlayerCard } from '../components/PlayerCard';
 import { MapPoolSection } from '../components/MapPoolSection';
+import { MatchResultsShowcase } from '../components/MatchResultsShowcase';
 import { ArrowUpRightIcon, CrosshairIcon } from '../components/SocialIcons';
 import './HomePage.css';
 
@@ -148,14 +149,39 @@ export const HomePage: React.FC<HomePageProps> = ({ lang }) => {
         </div>
       </section>
 
-      {/* 3. СПЛИТ-СЕКЦИЯ: БЕЛАЯ ФОРМА RL7 + СТАТУС МАТЧЕЙ TBA */}
+      {/* 2.5. ВЕРИФИЦИРОВАННЫЕ РЕЗУЛЬТАТЫ МАТЧЕЙ И СКРИНШОТЫ */}
+      <section className="rl7-home-section">
+        <div className="swiss-container">
+          <div className="section-header-grid">
+            <div>
+              <span className="tech-label">02 // VERIFIED IN-GAME SCOREBOARDS</span>
+              <h2 className="section-title-en">
+                RECENT <span>RESULTS</span>
+              </h2>
+              <p className="section-subtitle-ru">
+                {lang === 'ru'
+                  ? 'Официальные скриншоты результатов и итоговые таблицы матчей RED LIGHT 7 в Standoff 2: сухая победа 13:0 на Hanami, 30 фрагов от L1tez против [КРЫМ] и разгром [3FORZ].'
+                  : 'Verified post-match scoreboards and in-game captures of RED LIGHT 7 in Standoff 2: 13:0 shutout on Hanami, L1tez 30-frag carry vs [КРЫМ], and 13:8 win over [3FORZ].'}
+              </p>
+            </div>
+            <Link to="/matches" className="btn-rl7 btn-rl7-primary">
+              <span>{lang === 'ru' ? 'ЗАБИТЬ ПРАК / ВСЕ МАТЧИ' : 'BOOK A SCRIM / ALL MATCHES'}</span>
+              <ArrowUpRightIcon size={16} />
+            </Link>
+          </div>
+
+          <MatchResultsShowcase lang={lang} />
+        </div>
+      </section>
+
+      {/* 3. СПЛИТ-СЕКЦИЯ: БЕЛАЯ ФОРМА RL7 + БЫСТРАЯ СВОДКА МАТЧЕЙ */}
       <section className="rl7-home-section">
         <div className="swiss-container">
           <div className="rl7-home-bento">
             {/* Карточка джерси */}
             <div className="rl7-bento-card corner-frame">
               <div className="bento-card-top">
-                <span className="tech-label">02 // PRO KIT SHOWCASE</span>
+                <span className="tech-label">03 // PRO KIT SHOWCASE</span>
                 <span className="bento-code">{TEAM_CONFIG.jersey.code}</span>
               </div>
 
@@ -205,54 +231,59 @@ export const HomePage: React.FC<HomePageProps> = ({ lang }) => {
               </div>
             </div>
 
-            {/* Карточка матчей TBA */}
+            {/* Карточка актуальной формы команды и вызова на прак */}
             <div className="rl7-bento-card corner-frame">
               <div className="bento-card-top">
-                <span className="tech-label">03 // COMPETITIVE RADAR</span>
+                <span className="tech-label">04 // SCRIM &amp; MATCH RADAR</span>
                 <span className="bento-code" style={{ color: 'var(--brand-red)' }}>
-                  STATUS: TBA
+                  5W — 1L (83% WR)
                 </span>
               </div>
 
               <div className="bento-matches-body">
                 <div className="matches-tba-badge">
                   <CrosshairIcon size={18} />
-                  <span>UPCOMING MATCHES // TBA</span>
+                  <span>VERIFIED FORM // OPEN FOR SCRIMS</span>
                 </div>
 
                 <h3 className="bento-title">
                   {lang === 'ru' ? (
                     <>
-                      РАСПИСАНИЕ <span>МАТЧЕЙ</span>
+                      ВЫЗВАТЬ RL7 <span>НА ПРАК</span>
                     </>
                   ) : (
                     <>
-                      MATCH <span>SCHEDULE</span>
+                      CHALLENGE <span>RL7</span>
                     </>
                   )}
                 </h3>
 
                 <p className="bento-desc">
                   {lang === 'ru'
-                    ? 'Команда ведёт подготовку к предстоящим турнирам по Standoff 2. Подтверждённые матчи, сетки и официальные результаты появятся здесь сразу после анонса.'
-                    : 'The team is currently preparing for upcoming Standoff 2 tournaments. Confirmed fixtures, brackets, and official scores will be published upon announcement.'}
+                    ? 'Команда активно проводит праки (BO1 / BO3 / BO5) и готова к вызовам от стаков и организаций Standoff 2. Прямая связь через Telegram.'
+                    : 'The squad actively plays BO1 / BO3 / BO5 scrims and is open to challenges from Standoff 2 teams directly via Telegram.'}
                 </p>
 
                 <div className="tba-placeholder-table">
                   <div className="tba-row">
-                    <span className="tba-slot">MATCH SLOT // 01</span>
-                    <span className="tba-vs">RL7 vs TBA</span>
-                    <span className="tba-status">AWAITING DRAW</span>
+                    <span className="tba-slot">HANAMI // 5V5</span>
+                    <span className="tba-vs">RL7 13 : 0 27z / FLCNS</span>
+                    <span className="tba-status">SHUTOUT WIN</span>
                   </div>
                   <div className="tba-row">
-                    <span className="tba-slot">MATCH SLOT // 02</span>
-                    <span className="tba-vs">RL7 vs TBA</span>
-                    <span className="tba-status">AWAITING DRAW</span>
+                    <span className="tba-slot">PROVINCE // 5V5</span>
+                    <span className="tba-vs">RL7 13 : 12 [КРЫМ]</span>
+                    <span className="tba-status">L1TEZ 30K</span>
+                  </div>
+                  <div className="tba-row">
+                    <span className="tba-slot">PROVINCE // 5V5</span>
+                    <span className="tba-vs">RL7 13 : 8 [3FORZ]</span>
+                    <span className="tba-status">VICTORY</span>
                   </div>
                 </div>
 
                 <Link to="/matches" className="btn-rl7 btn-rl7-outline">
-                  <span>{lang === 'ru' ? 'ПЕРЕЙТИ В ТУРНИРНЫЙ ЦЕНТР' : 'OPEN MATCH CENTER'}</span>
+                  <span>{lang === 'ru' ? 'ОТПРАВИТЬ ВЫЗОВ НА ПРАК' : 'OPEN SCRIM GENERATOR'}</span>
                   <ArrowUpRightIcon size={16} />
                 </Link>
               </div>

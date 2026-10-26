@@ -89,6 +89,41 @@ export interface SocialChannel {
   statusEn: string;
 }
 
+export interface MatchPlayerStat {
+  nickname: string;
+  kills: number;
+  assists: number;
+  deaths: number;
+  score: number;
+  stars: number;
+  isMvp?: boolean;
+}
+
+export interface MatchResultItem {
+  id: string;
+  code: string;
+  map: 'HANAMI' | 'PROVINCE' | 'RUST';
+  region: string;
+  timeLabel: string;
+  rl7Score: number;
+  opponentScore: number;
+  opponentTag: string;
+  opponentLineup: string;
+  isWin: boolean;
+  rl7Side: 'T' | 'CT';
+  badgeRu: string;
+  badgeEn: string;
+  headlineRu: string;
+  headlineEn: string;
+  summaryRu: string;
+  summaryEn: string;
+  screenshotUrl: string;
+  mvpPlayer: string;
+  mvpLineRu: string;
+  mvpLineEn: string;
+  scoreboard: MatchPlayerStat[];
+}
+
 /**
  * ЕДИНЫЙ КОНФИГУРАЦИОННЫЙ ФАЙЛ КОМАНДЫ RED LIGHT 7 (RL7)
  */
@@ -904,4 +939,202 @@ export const TEAM_CONFIG = {
       statusEn: 'CLIPS COMING SOON',
     },
   ] as SocialChannel[],
+
+  /**
+   * ВЕРИФИЦИРОВАННЫЕ РЕЗУЛЬТАТЫ МАТЧЕЙ И ПРАКОВ (СО СКРИНШОТАМИ STANDOFF 2)
+   */
+  matchResults: [
+    {
+      id: 'match-hanami-13-0',
+      code: 'MATCH LOG // 01',
+      map: 'HANAMI',
+      region: 'Россия, Москва',
+      timeLabel: '23:39 MSK',
+      rl7Score: 13,
+      opponentScore: 0,
+      opponentTag: '27z / FLCNS',
+      opponentLineup: '[FLCNS] kyousuke, доки, [27z] santaxx, [27z] енкураж, [27z] джентору',
+      isWin: true,
+      rl7Side: 'T',
+      badgeRu: '13:0 СУХАЯ ПОБЕДА',
+      badgeEn: '13:0 SHUTOUT WIN',
+      headlineRu: 'БЕЗУПРЕЧНЫЙ РАЗГРОМ 13:0 НА HANAMI',
+      headlineEn: 'FLAWLESS 13:0 SHUTOUT ON HANAMI',
+      summaryRu:
+        'Тотальная доминация RED LIGHT 7 без единого отданного раунда: стремительный темп атаки, K/D 3.00+ у лидеров и идеальная реализация каждого выхода.',
+      summaryEn:
+        'Total domination by RED LIGHT 7 without dropping a single round: relentless T-side tempo and 3.00+ K/D across top fraggers.',
+      screenshotUrl: './assets/results/match-hanami-13-0.jpg',
+      mvpPlayer: 'L1tez & малыбка',
+      mvpLineRu: '22 КИЛЛА (6★ MVP) + L1TEZ 15/5 (K/D 3.00)',
+      mvpLineEn: '22 FRAGS (6★ MVP) + L1TEZ 15/5 (3.00 K/D)',
+      scoreboard: [
+        { nickname: '[RL7] малыбка ревнует', kills: 22, assists: 1, deaths: 10, score: 50, stars: 6, isMvp: true },
+        { nickname: '[RL7] L1tez', kills: 15, assists: 2, deaths: 5, score: 34, stars: 3 },
+        { nickname: '[RL7] morph', kills: 13, assists: 1, deaths: 4, score: 27, stars: 2 },
+        { nickname: '[RL7] hako', kills: 9, assists: 1, deaths: 4, score: 24, stars: 2 },
+        { nickname: '[RL7] KARAT', kills: 6, assists: 4, deaths: 9, score: 16, stars: 0 },
+      ],
+    },
+    {
+      id: 'match-province-13-12',
+      code: 'MATCH LOG // 02',
+      map: 'PROVINCE',
+      region: 'Россия, Москва',
+      timeLabel: '00:49 MSK',
+      rl7Score: 13,
+      opponentScore: 12,
+      opponentTag: '[КРЫМ]',
+      opponentLineup: '[КРЫМ] Crazyyy, [КРЫМ] Za1nyyy, [КРЫМ] zer1ks, [КРЫМ] TortyK, [КРЫМ] L1v4ik',
+      isWin: true,
+      rl7Side: 'CT',
+      badgeRu: 'L1TEZ 30 КИЛЛОВ // КЛАТЧ 13:12',
+      badgeEn: 'L1TEZ 30-BOMB // 13:12 CLUTCH',
+      headlineRu: 'ПОБЕДА 13:12 В БИТВЕ ВСЕХ 25 РАУНДОВ ПРОТИВ [КРЫМ]',
+      headlineEn: '13:12 FULL-DISTANCE VICTORY VS [КРЫМ] CLAN STACK',
+      summaryRu:
+        'Напряжённый 25-раундовый триллер на Province против полного стака [КРЫМ]. Энтри-фраггер L1tez оформил феноменальные 30 фрагов (64 очка), вытащив концовку за оборону.',
+      summaryEn:
+        'High-tension 25-round thriller on Province against the full [КРЫМ] stack. Entry fragger L1tez dropped a massive 30 kills (64 pts) to close out CT side.',
+      screenshotUrl: './assets/results/match-province-13-12.jpg',
+      mvpPlayer: 'L1tez',
+      mvpLineRu: 'L1TEZ: 30 УБИЙСТВ / 17 СМЕРТЕЙ (64 ОЧКА, 4★ MVP)',
+      mvpLineEn: 'L1TEZ: 30 KILLS / 17 DEATHS (64 SCORE, 4★ MVP)',
+      scoreboard: [
+        { nickname: '[RL7] L1tez', kills: 30, assists: 2, deaths: 17, score: 64, stars: 4, isMvp: true },
+        { nickname: '[RL7] KARAT', kills: 19, assists: 7, deaths: 17, score: 57, stars: 4 },
+        { nickname: '[RL7] hako', kills: 15, assists: 5, deaths: 16, score: 44, stars: 3 },
+        { nickname: '[RL7] sharinganov', kills: 17, assists: 3, deaths: 19, score: 44, stars: 1 },
+        { nickname: '[RL7] morph', kills: 8, assists: 3, deaths: 19, score: 19, stars: 1 },
+      ],
+    },
+    {
+      id: 'match-province-13-8',
+      code: 'MATCH LOG // 03',
+      map: 'PROVINCE',
+      region: 'Россия, Москва',
+      timeLabel: '22:42 MSK',
+      rl7Score: 13,
+      opponentScore: 8,
+      opponentTag: '[3FORZ]',
+      opponentLineup: '[3FORZ] Evil Cha..., [3FORZ] v9ine ki..., [222] давид мо..., [3FORZ] Fozi, [3FORZ] type Lo...',
+      isWin: true,
+      rl7Side: 'T',
+      badgeRu: 'MORPH & KARAT ПО 25 КИЛЛОВ',
+      badgeEn: 'MORPH & KARAT 25 FRAGS EACH',
+      headlineRu: 'УВЕРЕННАЯ ПОБЕДА 13:8 НАД СТАКОМ [3FORZ]',
+      headlineEn: 'DOMINANT 13:8 WIN OVER [3FORZ] STACK',
+      summaryRu:
+        'Дуэт morph (25/16, 61 очко) и KARAT (25/10, K/D 2.50!) суммарно оформил 50 фрагов и 10 звёзд MVP, полностью сломав экономику защиты соперника на Province.',
+      summaryEn:
+        'The duo of morph (25/16, 61 pts) and KARAT (25/10, 2.50 K/D!) combined for 50 kills and 10 MVP stars, dismantling the opponent defense on Province.',
+      screenshotUrl: './assets/results/match-province-13-8.jpg',
+      mvpPlayer: 'morph & KARAT',
+      mvpLineRu: 'MORPH (25/16, 61 PTS) + KARAT (25/10, K/D 2.50)',
+      mvpLineEn: 'MORPH (25/16, 61 PTS) + KARAT (25/10, 2.50 K/D)',
+      scoreboard: [
+        { nickname: '[RL7] morph', kills: 25, assists: 1, deaths: 16, score: 61, stars: 5, isMvp: true },
+        { nickname: '[RL7] KARAT', kills: 25, assists: 1, deaths: 10, score: 53, stars: 5, isMvp: true },
+        { nickname: '[RL7] L1tez', kills: 16, assists: 6, deaths: 18, score: 38, stars: 1 },
+        { nickname: '[BOOST] funeral', kills: 12, assists: 3, deaths: 13, score: 33, stars: 0 },
+        { nickname: '[RL7] hako', kills: 9, assists: 3, deaths: 16, score: 29, stars: 1 },
+      ],
+    },
+    {
+      id: 'match-hanami-13-9',
+      code: 'MATCH LOG // 04',
+      map: 'HANAMI',
+      region: 'Россия, Москва',
+      timeLabel: '22:48 MSK',
+      rl7Score: 13,
+      opponentScore: 9,
+      opponentTag: 'FFT / Ctalk',
+      opponentLineup: '[Ctalk] Arst TV, W1zordy, qp, [FFT] zeko, [FFT] Relaxer, [FUXP] qoekhanda',
+      isWin: true,
+      rl7Side: 'T',
+      badgeRu: '85 КОМАНДНЫХ ФРАГОВ // РОТАЦИЯ С DELF1N',
+      badgeEn: '85 TEAM FRAGS // FULL ROTATION',
+      headlineRu: 'КОМАНДНАЯ ПОБЕДА 13:9 С ПОДКЛЮЧЕНИЕМ DELF1N',
+      headlineEn: '13:9 TEAM VICTORY WITH DELF1N IN ACTIVE ROTATION',
+      summaryRu:
+        'Образцовый командный баланс: все 5 игроков RL7 (L1tez, morph, hako, KARAT и 6-й игрок delf1n) вышли в двузначные показатели киллов, набрав 85 фрагов на команду.',
+      summaryEn:
+        'Textbook balanced teamplay: all 5 RL7 players (L1tez, morph, hako, KARAT, and 6th man delf1n) hit double-digit kills for 85 total team frags.',
+      screenshotUrl: './assets/results/match-hanami-13-9.jpg',
+      mvpPlayer: 'L1tez & morph',
+      mvpLineRu: 'L1TEZ (19/15, 51 PTS, 5★) + MORPH (21 КИЛЛ)',
+      mvpLineEn: 'L1TEZ (19/15, 51 PTS, 5★) + MORPH (21 KILLS)',
+      scoreboard: [
+        { nickname: '[RL7] L1tez', kills: 19, assists: 6, deaths: 15, score: 51, stars: 5, isMvp: true },
+        { nickname: '[RL7] morph', kills: 21, assists: 2, deaths: 15, score: 49, stars: 2 },
+        { nickname: '[RL7] hako', kills: 17, assists: 4, deaths: 12, score: 44, stars: 4 },
+        { nickname: '[RL7] KARAT 02', kills: 15, assists: 1, deaths: 17, score: 34, stars: 0 },
+        { nickname: '[RL7] Delf1n', kills: 13, assists: 2, deaths: 17, score: 32, stars: 2 },
+      ],
+    },
+    {
+      id: 'match-rust-8-7',
+      code: 'MATCH LOG // 05',
+      map: 'RUST',
+      region: 'Россия, Москва',
+      timeLabel: '00:34 MSK',
+      rl7Score: 8,
+      opponentScore: 7,
+      opponentTag: '[ETKN]',
+      opponentLineup: 'harone, [ETKN] Toks1, [ETKN] KAISER, [xAtS] TikWell, [ETKN] Straiker',
+      isWin: true,
+      rl7Side: 'CT',
+      badgeRu: 'ПОБЕДА 8:7 НА RUST // СВЯЗКА L1TEZ + MORPH',
+      badgeEn: '8:7 RUST CLUTCH // L1TEZ + MORPH DUO',
+      headlineRu: 'ВОЛЕВОЙ КЛАТЧ 8:7 ПРОТИВ [ETKN] НА КАРТЕ RUST',
+      headlineEn: 'CLUTCH 8:7 VICTORY AGAINST [ETKN] ON RUST',
+      summaryRu:
+        'Жёсткая контактная рубка на Rust за сторону защиты (CT): L1tez (21/9, K/D 2.33) и morph (16/10) закрыли решающие раунды против стака [ETKN].',
+      summaryEn:
+        'Gritty close-quarters CT defense on Rust: L1tez (21/9, 2.33 K/D) and morph (16/10) locked down the deciding rounds against [ETKN].',
+      screenshotUrl: './assets/results/match-rust-8-7.jpg',
+      mvpPlayer: 'L1tez',
+      mvpLineRu: 'L1TEZ: 21 УБИЙСТВО / 9 СМЕРТЕЙ (K/D 2.33, 51 ОЧКО)',
+      mvpLineEn: 'L1TEZ: 21 KILLS / 9 DEATHS (2.33 K/D, 51 PTS)',
+      scoreboard: [
+        { nickname: '[RL7] L1tez', kills: 21, assists: 3, deaths: 9, score: 51, stars: 3, isMvp: true },
+        { nickname: '[RL7] morph', kills: 16, assists: 4, deaths: 10, score: 41, stars: 2 },
+        { nickname: '[RL7] KARAT', kills: 11, assists: 2, deaths: 10, score: 28, stars: 2 },
+        { nickname: '[RL7] hako', kills: 7, assists: 2, deaths: 12, score: 18, stars: 1 },
+        { nickname: '[RL7] Delf1n', kills: 4, assists: 4, deaths: 12, score: 12, stars: 0 },
+      ],
+    },
+    {
+      id: 'match-hanami-10-13',
+      code: 'MATCH LOG // 06',
+      map: 'HANAMI',
+      region: 'Россия, Москва',
+      timeLabel: '16:52 MSK',
+      rl7Score: 10,
+      opponentScore: 13,
+      opponentTag: 'efpl / Yohji',
+      opponentLineup: 'Yohji Yamamoto, Gard, [efpl] cardiN, [xd] brightest, pL',
+      isWin: false,
+      rl7Side: 'T',
+      badgeRu: 'ПЛОТНЫЙ МАТЧ 10:13 // L1TEZ 22 КИЛЛА',
+      badgeEn: 'CLOSE 10:13 MATCH // L1TEZ 22 KILLS',
+      headlineRu: 'БОЕВОЙ МАТЧ 10:13 ОСНОВНОЙ ПЯТЁРКИ RL7 НА HANAMI',
+      headlineEn: 'COMPETITIVE 10:13 CLASH ON HANAMI',
+      summaryRu:
+        'Упорная встреча стартовой пятёрки (L1tez, KARAT, morph, sharinganov, hako). L1tez стал лучшим по очкам на всём сервере (56 очков, 22/17 K/D).',
+      summaryEn:
+        'Hard-fought match by the starting five (L1tez, KARAT, morph, sharinganov, hako), with L1tez leading the entire server in score (56 pts, 22/17 K/D).',
+      screenshotUrl: './assets/results/match-hanami-10-13.jpg',
+      mvpPlayer: 'L1tez',
+      mvpLineRu: 'L1TEZ: 22 КИЛЛА / 56 ОЧКОВ (ТОП-1 СЕРВЕРА)',
+      mvpLineEn: 'L1TEZ: 22 KILLS / 56 PTS (#1 SERVER SCORE)',
+      scoreboard: [
+        { nickname: '[RL7] L1tez', kills: 22, assists: 3, deaths: 17, score: 56, stars: 3, isMvp: true },
+        { nickname: '[RL7] KARAT 02', kills: 16, assists: 6, deaths: 16, score: 44, stars: 2 },
+        { nickname: '[RL7] morph', kills: 12, assists: 7, deaths: 19, score: 33, stars: 2 },
+        { nickname: '[RL7] sharinganov', kills: 15, assists: 0, deaths: 18, score: 30, stars: 2 },
+        { nickname: '[RL7] hako', kills: 12, assists: 4, deaths: 18, score: 28, stars: 1 },
+      ],
+    },
+  ] as MatchResultItem[],
 };

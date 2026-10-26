@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Language, TEAM_CONFIG } from '../data/teamData';
+import { MatchResultsShowcase } from '../components/MatchResultsShowcase';
 import { ArrowUpRightIcon, CrosshairIcon, SocialVectorIcon } from '../components/SocialIcons';
 import './MatchesPage.css';
 
@@ -86,22 +87,25 @@ export const MatchesPage: React.FC<MatchesPageProps> = ({ lang }) => {
         {/* Заголовок страницы */}
         <div className="section-header-grid">
           <div>
-            <span className="tech-label">DIRECTORY // 03 — COMPETITIVE SCHEDULE &amp; SCRIMS</span>
+            <span className="tech-label">DIRECTORY // 03 — VERIFIED RESULTS &amp; SCRIM CENTER</span>
             <h1 className="section-title-en">
-              MATCHES <span>&amp; SCRIMS</span>
+              RESULTS <span>&amp; SCRIMS</span>
             </h1>
             <p className="section-subtitle-ru">
               {lang === 'ru'
-                ? 'Официальный календарь выступлений, прямая отправка вызова RED LIGHT 7 на прак (Scrim) в Telegram и турнирный архив.'
-                : 'Official competitive calendar, direct Telegram scrimmage challenge to RED LIGHT 7, and tournament archive.'}
+                ? 'Верифицированный архив матчей RED LIGHT 7 с оригинальными скриншотами из Standoff 2, статистикой игроков и быстрой отправкой вызова на прак в Telegram.'
+                : 'Verified RED LIGHT 7 match archive with original Standoff 2 screenshots, player scoreboards, and direct Telegram scrimmage booking.'}
             </p>
           </div>
 
           <div className="matches-live-indicator">
             <span className="red-signal-dot" />
-            <span>SCRIM CONTACT: @{TEAM_CONFIG.brand.scrimTelegramUsername.toUpperCase()}</span>
+            <span>RECORD: 5W — 1L (83% WR) // @{TEAM_CONFIG.brand.scrimTelegramUsername.toUpperCase()}</span>
           </div>
         </div>
+
+        {/* ГЛАВНЫЙ БЛОК: РЕАЛЬНЫЕ РЕЗУЛЬТАТЫ И СКРИНШОТЫ МАТЧЕЙ RL7 */}
+        <MatchResultsShowcase lang={lang} />
 
         {/* Главный технический монитор статуса TBA */}
         <div className="rl7-tba-monitor corner-frame">
