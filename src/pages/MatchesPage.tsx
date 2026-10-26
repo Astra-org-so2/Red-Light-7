@@ -100,7 +100,7 @@ export const MatchesPage: React.FC<MatchesPageProps> = ({ lang }) => {
 
           <div className="matches-live-indicator">
             <span className="red-signal-dot" />
-            <span>RECORD: 5W — 1L (83% WR) // @{TEAM_CONFIG.brand.scrimTelegramUsername.toUpperCase()}</span>
+            <span>RECORD: 6W — 1L (86% WR) // @{TEAM_CONFIG.brand.scrimTelegramUsername.toUpperCase()}</span>
           </div>
         </div>
 

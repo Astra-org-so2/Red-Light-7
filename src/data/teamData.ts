@@ -102,7 +102,7 @@ export interface MatchPlayerStat {
 export interface MatchResultItem {
   id: string;
   code: string;
-  map: 'HANAMI' | 'PROVINCE' | 'RUST';
+  map: 'HANAMI' | 'PROVINCE' | 'RUST' | 'PRISON';
   region: string;
   timeLabel: string;
   rl7Score: number;
@@ -1105,8 +1105,40 @@ export const TEAM_CONFIG = {
       ],
     },
     {
-      id: 'match-hanami-10-13',
+      id: 'match-prison-13-10',
       code: 'MATCH LOG // 06',
+      map: 'PRISON',
+      region: 'Россия, Москва',
+      timeLabel: '22:43 MSK',
+      rl7Score: 13,
+      opponentScore: 10,
+      opponentTag: '[YB] Stack',
+      opponentLineup: 'sIZE 666, хог 2.6, [YB] коч666, [YB] W1rzR, [YB] KyO, [F7] FatVictory94',
+      isWin: true,
+      rl7Side: 'CT',
+      badgeRu: 'ПОБЕДА 13:10 НА PRISON // MORPH 19 КИЛЛОВ',
+      badgeEn: '13:10 PRISON VICTORY // MORPH 19 FRAGS',
+      headlineRu: 'ПОБЕДА 13:10 ЗА ОБОРОНУ ПРОТИВ СТАКА [YB] НА PRISON',
+      headlineEn: '13:10 CT-SIDE VICTORY OVER [YB] STACK ON PRISON',
+      summaryRu:
+        'Железная оборона на карте Prison: morph стал лучшим фраггером RL7 (19/14, K/D 1.36), а вся пятёрка дружно преодолела отметку в 10+ киллов и дожала соперника 13:10.',
+      summaryEn:
+        'Disciplined CT-side lockdown on Prison: morph led RL7 in kills (19/14, 1.36 K/D) while all five players hit double-digit frags to close out 13:10.',
+      screenshotUrl: './assets/results/match-prison-13-10.jpg',
+      mvpPlayer: 'morph & KARAT',
+      mvpLineRu: 'MORPH (19 КИЛЛОВ, K/D 1.36) + KARAT (13/14, 3★) + 6★ MVP',
+      mvpLineEn: 'MORPH (19 FRAGS, 1.36 K/D) + KARAT (13/14, 3★) + 6★ MVP',
+      scoreboard: [
+        { nickname: '[BOOST] 17iq es...', kills: 15, assists: 11, deaths: 14, score: 52, stars: 6, isMvp: true },
+        { nickname: '[RL7] morph', kills: 19, assists: 4, deaths: 14, score: 42, stars: 1, isMvp: true },
+        { nickname: '[RL7] KARAT', kills: 13, assists: 1, deaths: 14, score: 39, stars: 3 },
+        { nickname: '[RL7] L1tez', kills: 14, assists: 7, deaths: 17, score: 35, stars: 2 },
+        { nickname: '[RL7] hako', kills: 10, assists: 8, deaths: 17, score: 30, stars: 1 },
+      ],
+    },
+    {
+      id: 'match-hanami-10-13',
+      code: 'MATCH LOG // 07',
       map: 'HANAMI',
       region: 'Россия, Москва',
       timeLabel: '16:52 MSK',

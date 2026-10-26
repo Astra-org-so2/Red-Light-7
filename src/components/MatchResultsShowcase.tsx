@@ -45,7 +45,9 @@ export const MatchResultsShowcase: React.FC<MatchResultsShowcaseProps> = ({ lang
             {winsCount}W — {lossesCount}L
           </strong>
           <span className="kpi-sub">
-            {lang === 'ru' ? '6 ОФИЦИАЛЬНЫХ СКРИНШОТОВ' : '6 VERIFIED SCREENSHOTS'}
+            {lang === 'ru'
+              ? `${results.length} ОФИЦИАЛЬНЫХ СКРИНШОТОВ`
+              : `${results.length} VERIFIED SCREENSHOTS`}
           </span>
         </div>
 
@@ -252,13 +254,13 @@ export const MatchResultsShowcase: React.FC<MatchResultsShowcaseProps> = ({ lang
         </div>
       </div>
 
-      {/* 3. ГАЛЕРЕЯ ВСЕХ 6 СКРИНШОТОВ В СЕТКЕ BENTO */}
+      {/* 3. ГАЛЕРЕЯ ВСЕХ СКРИНШОТОВ В СЕТКЕ BENTO */}
       <div className="results-gallery-block">
         <div className="gallery-subbar">
           <span className="tech-label">
             {lang === 'ru'
-              ? 'ГАЛЕРЕЯ СКРИНШОТОВ // НАЖМИТЕ ДЛЯ УВЕЛИЧЕНИЯ (6 КАРТ)'
-              : 'SCREENSHOT GALLERY // CLICK TO INSPECT (6 MAPS)'}
+              ? `ГАЛЕРЕЯ СКРИНШОТОВ // НАЖМИТЕ ДЛЯ УВЕЛИЧЕНИЯ (${results.length} КАРТ)`
+              : `SCREENSHOT GALLERY // CLICK TO INSPECT (${results.length} MAPS)`}
           </span>
           <span className="gallery-subbar-hint">
             {lang === 'ru' ? '100% ОРИГИНАЛЬНЫЕ СКРИНШОТЫ ИЗ ИГРЫ' : '100% AUTHENTIC IN-GAME CAPTURES'}

@@ -236,7 +236,7 @@ export const HomePage: React.FC<HomePageProps> = ({ lang }) => {
               <div className="bento-card-top">
                 <span className="tech-label">04 // SCRIM &amp; MATCH RADAR</span>
                 <span className="bento-code" style={{ color: 'var(--brand-red)' }}>
-                  5W — 1L (83% WR)
+                  6W — 1L (86% WR)
                 </span>
               </div>
 
