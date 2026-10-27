@@ -90,11 +90,17 @@ export const HomePage: React.FC<HomePageProps> = ({ lang }) => {
                 {/* Нижняя плашка с никнеймами и ролями на постере */}
                 <div className="rl7-hero-lineup-tags">
                   {TEAM_CONFIG.roster.map((p) => (
-                    <Link to="/roster" key={p.id} className="hero-player-chip">
+                    <Link
+                      to="/roster"
+                      key={p.id}
+                      className={`hero-player-chip ${p.isCaptain ? 'is-captain-chip' : ''}`}
+                    >
                       <span className="chip-num">
-                        #{p.number} {p.isReserve ? '• SUB' : ''}
+                        #{p.number} {p.isCaptain ? '• CAPTAIN' : p.isReserve ? '• SUB' : ''}
                       </span>
-                      <span className="chip-name">{p.nickname}</span>
+                      <span className="chip-name">
+                        {p.nickname} {p.isCaptain ? '★' : ''}
+                      </span>
                     </Link>
                   ))}
                 </div>
@@ -109,7 +115,7 @@ export const HomePage: React.FC<HomePageProps> = ({ lang }) => {
         <div className="swiss-container rl7-ticker-inner">
           <span>RED LIGHT 7 // RL7 ESPORTS</span>
           <span className="ticker-dot" />
-          <span>L1TEZ / SHARINGANOV / MORPH / HAKO / KARAT</span>
+          <span>L1TEZ / SHARINGANOV / MORPH (CAPTAIN) / HAKO / KARAT</span>
           <span className="ticker-dot" />
           <span>STANDOFF 2 COMPETITIVE DIVISION</span>
           <span className="ticker-dot" />
@@ -128,8 +134,8 @@ export const HomePage: React.FC<HomePageProps> = ({ lang }) => {
               </h2>
               <p className="section-subtitle-ru">
                 {lang === 'ru'
-                  ? 'Боевой состав организации RED LIGHT 7 по дисциплине Standoff 2: сыгранная пятёрка основы с чёткой тактической специализацией каждого игрока.'
-                  : 'RED LIGHT 7 competitive Standoff 2 squad: our synchronized starting five with specialized tactical roles.'}
+                  ? 'Боевой состав организации RED LIGHT 7 по дисциплине Standoff 2: сыгранная пятёрка основы под лидерством капитана morph с чёткой тактической специализацией.'
+                  : 'RED LIGHT 7 competitive Standoff 2 squad: our starting five led by captain morph with specialized tactical roles.'}
               </p>
             </div>
             <Link to="/roster" className="btn-rl7 btn-rl7-outline">

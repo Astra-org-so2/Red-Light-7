@@ -49,6 +49,14 @@
   background-color: rgba(255, 255, 255, 0.12);
 }
 
+.rl7-player-number.captain-badge {
+  color: #ffffff;
+  background-color: var(--brand-red);
+  box-shadow: 0 4px 14px rgba(225, 6, 22, 0.55);
+  font-weight: 800;
+  letter-spacing: 0.08em;
+}
+
 .rl7-player-visual {
   position: relative;
   aspect-ratio: 3 / 3.4;
@@ -160,12 +168,23 @@
   background-color: var(--text-primary);
 }
 
+.rl7-player-dot.captain-dot {
+  background-color: var(--brand-red);
+  box-shadow: 0 0 8px var(--brand-red);
+}
+
 .rl7-player-status {
   font-family: var(--font-mono);
   font-size: 0.64rem;
   font-weight: 600;
   letter-spacing: 0.12em;
   color: var(--text-secondary);
+}
+
+.rl7-player-status.is-captain-status {
+  color: var(--brand-red);
+  font-weight: 700;
+  letter-spacing: 0.14em;
 }
 
 .rl7-player-nickname {
@@ -175,6 +194,12 @@
   letter-spacing: -0.02em;
   color: var(--text-primary);
   line-height: 1.05;
+}
+
+.captain-star-icon {
+  color: var(--brand-red);
+  font-size: 1.15rem;
+  vertical-align: middle;
 }
 
 .rl7-player-perk-box {

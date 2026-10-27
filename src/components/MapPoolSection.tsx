@@ -139,27 +139,33 @@ export const MapPoolSection: React.FC<MapPoolSectionProps> = ({ lang }) => {
                 className="radar-minimap-img"
               />
 
-              {/* Живые маркеры всех 6 игроков прямо поверх карты */}
+              {/* Живые маркеры всех игроков прямо поверх карты */}
               {currentMap.assignments.map((assign) => {
                 const x = activeSide === 'ct' ? assign.ctX : assign.tX;
                 const y = activeSide === 'ct' ? assign.ctY : assign.tY;
                 const isSelected = assign.player === focusedAssign.player;
                 const isSub = assign.roleTag === '6TH SUB';
+                const isCaptain = assign.roleTag.includes('CAPTAIN');
 
                 return (
                   <button
                     key={assign.player}
                     type="button"
                     className={`radar-player-pin ${isSelected ? 'is-selected' : ''} ${
-                      isSub ? 'is-sub-pin' : ''
+                      isSub ? 'is-sub-pin' : isCaptain ? 'is-captain-pin' : ''
                     }`}
                     style={{ left: `${x}%`, top: `${y}%` }}
                     onClick={() => setSelectedPlayer(assign.player)}
                     title={`${assign.player} (${assign.roleTag})`}
                   >
                     <span className="pin-pulse" />
-                    <span className="pin-dot">#{assign.number}</span>
-                    <span className="pin-label">{assign.player}</span>
+                    <span className="pin-dot">
+                      {isCaptain ? `★ #${assign.number}` : `#${assign.number}`}
+                    </span>
+                    <span className="pin-label">
+                      {assign.player}
+                      {isCaptain ? ' (C)' : ''}
+                    </span>
                   </button>
                 );
               })}
@@ -171,7 +177,10 @@ export const MapPoolSection: React.FC<MapPoolSectionProps> = ({ lang }) => {
                 <span className="hud-num">#{focusedAssign.number}</span>
                 <div>
                   <div className="hud-player-line">
-                    <strong>{focusedAssign.player}</strong>
+                    <strong>
+                      {focusedAssign.player}
+                      {focusedAssign.roleTag.includes('CAPTAIN') ? ' ★' : ''}
+                    </strong>
                     <span className="hud-role-pill">{focusedAssign.roleTag}</span>
                   </div>
                   <span className="hud-pos-val">
@@ -192,10 +201,11 @@ export const MapPoolSection: React.FC<MapPoolSectionProps> = ({ lang }) => {
             </div>
           </div>
 
-          {/* Правая часть: Карточки всех 6 игроков, синхронизированные с картой */}
+          {/* Правая часть: Карточки всех игроков, синхронизированные с картой */}
           <div className="mappool-assignments-list">
             {currentMap.assignments.map((assign) => {
               const isSub = assign.roleTag === '6TH SUB';
+              const isCaptain = assign.roleTag.includes('CAPTAIN');
               const isSelected = assign.player === focusedAssign.player;
               return (
                 <div
@@ -208,9 +218,16 @@ export const MapPoolSection: React.FC<MapPoolSectionProps> = ({ lang }) => {
                   <div className="assign-card-head">
                     <div className="assign-player-title">
                       <span className="assign-num">#{assign.number}</span>
-                      <span className="assign-player-name">{assign.player}</span>
+                      <span className="assign-player-name">
+                        {assign.player}
+                        {isCaptain ? ' (C)' : ''}
+                      </span>
                     </div>
-                    <span className={`assign-role-badge ${isSub ? 'sub-badge' : ''}`}>
+                    <span
+                      className={`assign-role-badge ${
+                        isSub ? 'sub-badge' : isCaptain ? 'captain-badge' : ''
+                      }`}
+                    >
                       {assign.roleTag}
                     </span>
                   </div>

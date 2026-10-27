@@ -19,8 +19,13 @@ export const PlayerCard: React.FC<PlayerCardProps> = ({ player, lang, featured =
       {/* Верхняя планка карточки */}
       <div className="rl7-player-topbar">
         <span className="rl7-player-unit">{player.specTag}</span>
-        <span className={`rl7-player-number ${player.isReserve ? 'reserve-badge' : ''}`}>
-          #{player.number}
+        <span
+          className={`rl7-player-number ${
+            player.isCaptain ? 'captain-badge' : player.isReserve ? 'reserve-badge' : ''
+          }`}
+        >
+          {player.isCaptain ? '★ CAPTAIN #' : '#'}
+          {player.number}
         </span>
       </div>
 
@@ -51,14 +56,19 @@ export const PlayerCard: React.FC<PlayerCardProps> = ({ player, lang, featured =
       <div className="rl7-player-info">
         <div className="rl7-player-status-row">
           <span
-            className={`rl7-player-dot ${player.isReserve ? 'reserve-dot' : ''}`}
+            className={`rl7-player-dot ${
+              player.isCaptain ? 'captain-dot' : player.isReserve ? 'reserve-dot' : ''
+            }`}
           />
-          <span className="rl7-player-status">
+          <span className={`rl7-player-status ${player.isCaptain ? 'is-captain-status' : ''}`}>
             {lang === 'ru' ? player.statusRu : player.statusEn}
           </span>
         </div>
 
-        <h3 className="rl7-player-nickname">{player.nickname}</h3>
+        <h3 className="rl7-player-nickname">
+          {player.nickname}
+          {player.isCaptain && <span className="captain-star-icon" title="Team Captain"> ★</span>}
+        </h3>
 
         {/* Отличительная особенность / перк */}
         <div className="rl7-player-perk-box">

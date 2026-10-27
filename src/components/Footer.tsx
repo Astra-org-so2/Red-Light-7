@@ -71,7 +71,9 @@ export const Footer: React.FC<FooterProps> = ({ lang }) => {
               {TEAM_CONFIG.roster.map((player) => (
                 <li key={player.id}>
                   <span className="roster-num">#{player.number}</span>
-                  <span className="roster-nick">{player.nickname}</span>
+                  <span className="roster-nick">
+                    {player.nickname} {player.isCaptain ? '(C)' : ''}
+                  </span>
                 </li>
               ))}
             </ul>

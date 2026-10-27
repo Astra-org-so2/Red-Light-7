@@ -32,11 +32,12 @@ export const MatchesPage: React.FC<MatchesPageProps> = ({ lang }) => {
 
   const formattedTicket = [
     `🔴 ВЫЗОВ НА ПРАК (SCRIM) — RED LIGHT 7 (SO2)`,
+    `• Капитан RL7: morph (#03)`,
     `• Соперник: ${teamName.trim() || 'TEAM TBA'}`,
     `• Формат: ${format} (5v5 Competitive)`,
     `• Карты: ${selectedMaps.join(' / ')}`,
     `• Время: ${timeSlot}`,
-    `• Контакт капитана: ${contactHandle.trim() || 'в этом чате'}`,
+    `• Контакт вашего капитана: ${contactHandle.trim() || 'в этом чате'}`,
   ].join('\n');
 
   // Прямая ссылка в личку Telegram @ecstazy322 с предзаполненным текстом заявки
@@ -128,8 +129,8 @@ export const MatchesPage: React.FC<MatchesPageProps> = ({ lang }) => {
               </h2>
               <p className="tba-subtext">
                 {lang === 'ru'
-                  ? 'Состав RL7 (L1tez, sharinganov, morph, hako, karat) проходит тренировочный цикл и открыт для праков. Даты турнирных матчей будут опубликованы после официальной жеребьёвки.'
-                  : 'The RL7 squad (L1tez, sharinganov, morph, hako, karat) is in an active scrimmage block. Official tournament dates will appear here once brackets are locked.'}
+                  ? 'Состав RL7 под руководством капитана morph (L1tez, sharinganov, morph, hako, karat) проходит тренировочный цикл и открыт для праков. Даты турнирных матчей будут опубликованы после официальной жеребьёвки.'
+                  : 'The RL7 squad led by captain morph (L1tez, sharinganov, morph, hako, karat) is in an active scrimmage block. Official tournament dates will appear here once brackets are locked.'}
               </p>
             </div>
           </div>

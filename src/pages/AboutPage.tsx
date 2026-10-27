@@ -14,9 +14,9 @@ export const AboutPage: React.FC<AboutPageProps> = ({ lang }) => {
       titleRu: 'ТАКТИЧЕСКАЯ СИНЕРГИЯ 5V5',
       titleEn: 'TACTICAL 5V5 SYNERGY',
       descRu:
-        'Чёткое разделение ролей внутри стартовой пятёрки (L1tez, sharinganov, morph, hako, karat) обеспечивает полный контроль карты и мгновенную адаптацию по ходу серии.',
+        'Чёткое разделение ролей внутри стартовой пятёрки под лидерством капитана morph (L1tez, sharinganov, morph, hako, karat) обеспечивает полный контроль карты и мгновенную адаптацию по ходу серии.',
       descEn:
-        'Specialized role distribution across our starting five (L1tez, sharinganov, morph, hako, karat) ensures complete map control and mid-series adaptability.',
+        'Specialized role distribution across our starting five led by captain morph (L1tez, sharinganov, morph, hako, karat) ensures complete map control and mid-series adaptability.',
     },
     {
       num: '02',

@@ -30,6 +30,7 @@ export interface PlayerProfile {
   id: string;
   number: string;
   nickname: string;
+  isCaptain?: boolean;
   isReserve?: boolean;
   statusRu: string;
   statusEn: string;
@@ -227,23 +228,24 @@ export const TEAM_CONFIG = {
       id: 'rl7-03',
       number: '03',
       nickname: 'morph',
+      isCaptain: true,
       isReserve: false,
-      statusRu: 'ОСНОВНОЙ СОСТАВ',
-      statusEn: 'STARTING FIVE',
-      roleRu: 'LURKER // МАСТЕР КЛАТЧЕЙ',
-      roleEn: 'LURKER & CLUTCH SPECIALIST',
-      perkRu: 'ЧТЕНИЕ РОТАЦИЙ И СИТУАЦИИ 1vX',
-      perkEn: 'ROTATION READS & 1vX CLUTCHES',
+      statusRu: 'КАПИТАН // ОСНОВНОЙ СОСТАВ',
+      statusEn: 'CAPTAIN // STARTING FIVE',
+      roleRu: 'CAPTAIN / IGL // LURKER',
+      roleEn: 'CAPTAIN / IGL & LURKER',
+      perkRu: 'ТАКТИЧЕСКИЙ IGL И ЧТЕНИЕ ИГРЫ',
+      perkEn: 'TACTICAL IGL & GAME READING',
       traitRu:
-        'Теневой интеллект команды. Идеально чувствует тайминги перетяжек соперника, режет ротации в спину и вытаскивает самые безнадёжные клатчи в концовках раундов.',
+        'Капитан и тактический лидер (IGL) RED LIGHT 7. Направляет командную стратегию, мгновенно адаптирует коллы под раунд, режет ротации в спину и хладнокровно вытаскивает сложнейшие клатчи 1vX.',
       traitEn:
-        'The shadow tactician. Reads enemy rotations with surgical timing, cuts off flanks, and thrives in high-pressure 1vX late rounds.',
+        'Team captain and in-game leader (IGL) of RED LIGHT 7. Dictates macro strategy, dynamically adjusts mid-round calls, flanks enemy rotations, and clutches high-pressure 1vX rounds.',
       metrics: [
-        { labelRu: 'ЧТЕНИЕ ИГРЫ (GAME SENSE)', labelEn: 'GAME SENSE & IQ', value: 96 },
-        { labelRu: 'РЕАЛИЗАЦИЯ КЛАТЧЕЙ', labelEn: 'CLUTCH CONVERSION', value: 95 },
-        { labelRu: 'ЧУВСТВО ТАЙМИНГА', labelEn: 'TIMING MASTERY', value: 94 },
+        { labelRu: 'КАПИТАНСКИЙ IGL / ЛИДЕРСТВО', labelEn: 'IGL & LEADERSHIP', value: 98 },
+        { labelRu: 'ЧТЕНИЕ ИГРЫ (GAME SENSE)', labelEn: 'GAME SENSE & IQ', value: 97 },
+        { labelRu: 'РЕАЛИЗАЦИЯ КЛАТЧЕЙ', labelEn: 'CLUTCH CONVERSION', value: 96 },
       ],
-      radar: { aim: 92, entry: 84, clutch: 98, utility: 90, iq: 97 },
+      radar: { aim: 92, entry: 84, clutch: 98, utility: 92, iq: 99 },
       proSettings: {
         device: 'ASUS ROG Phone 8 Pro (Android) // 120Hz',
         fps: '120 FPS LOCKED',
@@ -253,12 +255,12 @@ export const TEAM_CONFIG = {
         scopeSens: '1.65',
         acceleration: '0.00 (OFF)',
         weapons: ['AKR', 'VAL', 'USP'],
-        configCode: 'RL7-MORPH-ANDROID-SENS-1.95-SCOPE-1.65',
+        configCode: 'RL7-MORPH-CAPTAIN-SENS-1.95-SCOPE-1.65',
       },
       division: 'STANDOFF 2 // PRO DIVISION',
       portraitUrl: './assets/players/player-silhouette-1.png',
       countryCode: 'RL7-03',
-      specTag: 'UNIT // ALPHA-03',
+      specTag: 'UNIT // CAPTAIN-03',
     },
     {
       id: 'rl7-04',
@@ -384,7 +386,7 @@ export const TEAM_CONFIG = {
         {
           player: 'morph',
           number: '03',
-          roleTag: 'LURKER',
+          roleTag: 'CAPTAIN / IGL',
           ctPosRu: 'Арка / Нижний Мид',
           ctPosEn: 'Arch / Lower Mid Cutoff',
           tPosRu: 'Люк через Длину под плент B',
@@ -466,7 +468,7 @@ export const TEAM_CONFIG = {
         {
           player: 'morph',
           number: '03',
-          roleTag: 'LURKER',
+          roleTag: 'CAPTAIN / IGL',
           ctPosRu: 'Погреб / Скрытый приём',
           ctPosEn: 'Cellar Off-Angle Hold',
           tPosRu: 'Люк через Двор и Дом под А',
@@ -548,7 +550,7 @@ export const TEAM_CONFIG = {
         {
           player: 'morph',
           number: '03',
-          roleTag: 'LURKER',
+          roleTag: 'CAPTAIN / IGL',
           ctPosRu: 'Блок / Перехват центра',
           ctPosEn: 'Block Interior Lurker',
           tPosRu: 'Скрытый заход через Коридор и Мастерскую',
@@ -630,7 +632,7 @@ export const TEAM_CONFIG = {
         {
           player: 'morph',
           number: '03',
-          roleTag: 'LURKER',
+          roleTag: 'CAPTAIN / IGL',
           ctPosRu: 'Двор / Перехват под B',
           ctPosEn: 'Courtyard Cutoff Hold',
           tPosRu: 'Глубокий люрк через Магазин под B',
@@ -712,7 +714,7 @@ export const TEAM_CONFIG = {
         {
           player: 'morph',
           number: '03',
-          roleTag: 'LURKER',
+          roleTag: 'CAPTAIN / IGL',
           ctPosRu: 'Арабеска / Скрытый перехват',
           ctPosEn: 'Arabesque Lurker Hold',
           tPosRu: 'Тихий заход по Длине под B',

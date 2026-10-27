@@ -73,9 +73,12 @@ export const RosterPage: React.FC<RosterPageProps> = ({ lang }) => {
                   }}
                 >
                   <span className="tab-num">
-                    #{player.number} {player.isReserve ? '// SUB' : ''}
+                    #{player.number} {player.isCaptain ? '// CAPTAIN' : player.isReserve ? '// SUB' : ''}
                   </span>
-                  <span className="tab-nick">{player.nickname}</span>
+                  <span className="tab-nick">
+                    {player.nickname}
+                    {player.isCaptain && <span style={{ color: 'var(--brand-red)' }}> ★</span>}
+                  </span>
                 </button>
               );
             })}
@@ -110,13 +113,23 @@ export const RosterPage: React.FC<RosterPageProps> = ({ lang }) => {
                 <span className="spotlight-callsign-label">
                   {lang === 'ru' ? activePlayer.roleRu : activePlayer.roleEn}
                 </span>
-                <h2 className="spotlight-nickname">{activePlayer.nickname}</h2>
+                <h2 className="spotlight-nickname">
+                  {activePlayer.nickname}
+                  {activePlayer.isCaptain && (
+                    <span style={{ color: 'var(--brand-red)', fontSize: '0.62em', verticalAlign: 'middle', fontWeight: 800 }}>
+                      {' '}[CAPTAIN]
+                    </span>
+                  )}
+                </h2>
               </div>
 
               <div className="spotlight-specs-grid">
                 <div className="spec-box">
                   <span className="spec-k">{lang === 'ru' ? 'СТАТУС В КЛУБЕ' : 'ROSTER STATUS'}</span>
-                  <span className="spec-v">
+                  <span
+                    className="spec-v"
+                    style={activePlayer.isCaptain ? { color: 'var(--brand-red)', fontWeight: 800 } : undefined}
+                  >
                     {lang === 'ru' ? activePlayer.statusRu : activePlayer.statusEn}
                   </span>
                 </div>
@@ -245,7 +258,7 @@ export const RosterPage: React.FC<RosterPageProps> = ({ lang }) => {
                 : 'COMPLETE SQUAD // STARTING FIVE'}
             </span>
             <span className="roster-subbar-right">
-              L1TEZ / SHARINGANOV / MORPH / HAKO / KARAT
+              L1TEZ / SHARINGANOV / MORPH (CAPTAIN) / HAKO / KARAT
             </span>
           </div>
 
